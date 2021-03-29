@@ -5,10 +5,10 @@ cd src
 java resumeBuilder.Menu #Running the program
 cd ..
 
-javac src/tests/*.java
-cd tests
-java tests.ContactInformationTests
-java tests.SchoolTests
-java tests.ActivityTest
-java tests.JobTest
-cd ..
+#javac src/tests/*.java
+#cd tests
+#java tests.ContactInformationTests
+#java tests.SchoolTests
+#java tests.ActivityTest
+#java tests.JobTest
+#cd ..
