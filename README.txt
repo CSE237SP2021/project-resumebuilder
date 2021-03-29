@@ -8,15 +8,17 @@ USER STORIES (Implemented)
 	- A user should be able to enter their extracurriculars
 	- A user should be able to enter their contact info
 	- A user should be able to enter their education experience
+	- A user should be able to enter their skills
 
-USER STORIES (To-dos)
+USER STORIES (To-dos and In Progress)
 	- A user should be able to enter their skills (depending on the template)
 	- A user should be able to enter their information in any order
 	- A user should be able to choose from a variety of templates (standard resume, HS resume, undergrad research, federal resume, technical resume, CV)
 	- A user should be able to receive a file of their resume (cwd, user chooses a directory, or emailed the file)
 
 Obstacles/Issues
-	-
+	- nextLine() with scanner caused issues in the Menu class, will need revisit this issue
+	- Rethinking resume menu structure to prompt for user information in the order the user chooses, rather than requesting all the necessary instance variables for object instantiation
 
 Running the Program from the Command Line
 	- See run_resume_builder.sh

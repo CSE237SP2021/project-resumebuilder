@@ -1,13 +1,14 @@
 #!/bin/bash
 
-cd src/resumeBuilder
-javac *.java #Compiling all java files in a folder
-java Menu #Running the program
-
+javac src/resumeBuilder/*.java #Compiling all java files in a folder
+cd src
+java resumeBuilder.Menu #Running the program
 cd ..
+
+javac src/tests/*.java
 cd tests
-javac *.java
-java ContactInformationTests
-java SchoolTests
-java ActivityTest
-java JobTest
+java tests.ContactInformationTests
+java tests.SchoolTests
+java tests.ActivityTest
+java tests.JobTest
+cd ..
