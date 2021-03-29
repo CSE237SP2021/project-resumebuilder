@@ -6,6 +6,8 @@ public class ContactInformation {
 	private String phone_number;
 	private String address;
 	
+	public ContactInformation() {}
+	
 	public ContactInformation (String name, String email, String phone_number, String address) {
 		this.name = name;
 		this.email = email;

@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class School {
+	
+	// TODO uncomment honors/awards once continuous prompting is set up in Menu
 
 	private String startDate;
 	private String endDate;
 	private String schoolName;
 	private String schoolLocation;
 	private double gpa;
-	private List<String> honors_awards; //Current config only includes honors and awards associated with a particular School obj
+	//private List<String> honors_awards; //Current config only includes honors and awards associated with a particular School obj
 	
 	public School (String startDate, String endDate, String schoolName, String schoolLocation, double gpa) {
 		this.startDate = startDate;
@@ -18,12 +20,14 @@ public class School {
 		this.schoolName = schoolName;
 		this.schoolLocation = schoolLocation;
 		this.gpa = gpa;
-		this.honors_awards = new ArrayList<String>();
+		//this.honors_awards = new ArrayList<String>();
 	}
 	
+	/*
 	public void addHonorsAwards (String honor_award) {
 		this.honors_awards.add(honor_award);
 	}
+	*/
 	
 	public String getStartDate() {
 		return this.startDate;
@@ -45,7 +49,9 @@ public class School {
 		return this.gpa;
 	}
 	
+	/*
 	public List<String> getHonorsAwards() {
 		return this.honors_awards;
 	}
+	*/
 }

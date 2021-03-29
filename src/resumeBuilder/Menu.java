@@ -15,7 +15,7 @@ public class Menu {
 	}
 	
 	private int getMenuSelection() {
-		return keyboardIn.nextInt();
+		return Integer.parseInt(keyboardIn.nextLine());
 	}
 	
 	
@@ -23,30 +23,31 @@ public class Menu {
 		displayTemplateMenu();
 		
 		int selectedTemplate = getMenuSelection();
-		
 		processTemplateMenu(selectedTemplate);
 		
 		keyboardIn.close();
-		
 	}
 	
 	private void processTemplateMenu(int selectedTemplate) { //see displayTemplateMenu for code correspondence
 		if(selectedTemplate == 1) {
+			
+			StandardResume currentStandardResume = new StandardResume();
+			
 			displayStandardResumeMenu();
-			
 			int standardResumeOption = getMenuSelection();
-			
-			processStandardResumeMenu(standardResumeOption);
+			processStandardResumeMenu(standardResumeOption, currentStandardResume);
 			
 		} else if(selectedTemplate == 2) {
 			
+			//Instantiate CV
+			
 			displayCVMenu();
-			
 			int CVOption = getMenuSelection();
-			
 			processCVMenu(CVOption);
 			
 		} else if(selectedTemplate == 3) {
+			
+			//Instantiate Technical Resume
 			
 			displayTechnicalResumeMenu();
 			
@@ -60,41 +61,20 @@ public class Menu {
 		}
 	}
 	
-	private void processStandardResumeMenu(int standardResumeOption) {
-		/*
-		 * Hannah: I feel as though this is when we should instantiate our resume object that we keep track of?
-		 * The issue is that our constructor isn't empty; it requires contact info.
-		 * So maybe we should prompt for contact info immediately before showing the template menu? 
-		 * And then just pass that contactinfo object to processTemplateMenu, 
-		 * instantiate the resume with that contactinfo, and then pass the resume to this process method for further additions?
-		 */
+	private void processStandardResumeMenu(int standardResumeOption, StandardResume currentStandardResume) {
+		
 		if(standardResumeOption==1) {
-			//Prompt for contact information (menu?)
-			
+			currentStandardResume=processContactInformation(currentStandardResume);
+			resetStandardResumeMenu(currentStandardResume);
 		} else if (standardResumeOption==2) {
-			
-			//Prompt for academic history (menu?)
-			
+			currentStandardResume=processAcademicInformation(currentStandardResume);
+			resetStandardResumeMenu(currentStandardResume);
 		} else if (standardResumeOption==3) {
-			
-			//Prompt for work experience (menu?)
-			
-		} else if (standardResumeOption==4) {
-			
-			//Prompt for skills - definitely not a menu
-			
-			//Can't implement til we discuss resume instantiation, but my thought is something like
-			
-			System.out.println("Please enter the skill you would like to add.");
-			String newSkill = keyboardIn.next(); // TODO Right now only takes in one word at a time, should get it to take in a phrase
-			System.out.println(newSkill);
-			
-			// currentStandardResume.addSkill(newSkill);
-			// displayStandardResumeMenu();
-			//int standardResumeOption = getMenuSelection();
-			//processStandardResumeMenu(standardResumeOption);
-			
-			// TODO make a method for each template that displays its menu, prompts for selection, and processes the selection so that we aren't repeating the same 3 lines of code
+			currentStandardResume=processWorkExperience(currentStandardResume);
+			resetStandardResumeMenu(currentStandardResume);
+		} else if (standardResumeOption==4) {				
+			currentStandardResume=processSkill(currentStandardResume);
+			resetStandardResumeMenu(currentStandardResume);
 		} else {
 			displayExitMessage();
 			// TODO update this else if standard resume menu changes (i expect it to)
@@ -159,5 +139,90 @@ public class Menu {
 	private void displayExitMessage() {
 		System.out.println("Exiting Resume Builder...");
 		System.out.println("Goodbye!");
+	}
+	
+	private void resetStandardResumeMenu(StandardResume currentStandardResume) {
+		displayStandardResumeMenu();
+		int standardResumeOption = getMenuSelection();
+		processStandardResumeMenu(standardResumeOption, currentStandardResume);
+	}
+	
+	private StandardResume processContactInformation(StandardResume currentStandardResume) {
+		
+		System.out.println("Please enter your first name.");
+		String firstName = keyboardIn.nextLine(); 
+		
+		System.out.println("Please enter your email.");
+		String email = keyboardIn.nextLine(); 
+		
+		System.out.println("Please enter your phone number (e.g. 'xxx-xxx-xxxx').");
+		String phone_number = keyboardIn.nextLine(); 
+		
+		System.out.println("Please enter your address.");
+		String address = keyboardIn.nextLine();
+		
+		ContactInformation currentContactInfo = new ContactInformation(firstName, email, phone_number, address);
+		
+		currentStandardResume.setContactInfo(currentContactInfo);
+		
+		return currentStandardResume;
+	}
+	
+	private StandardResume processAcademicInformation(StandardResume currentStandardResume) {
+		
+		System.out.println("Please enter your the name of the academic institution you would like to add.");
+		String schoolName = keyboardIn.nextLine(); 
+		
+		System.out.println("Where is "+schoolName+" located? (e.g. 'St. Louis, MO')");
+		String schoolLocation = keyboardIn.nextLine(); 
+		
+		System.out.println("What is/was your GPA at "+schoolName+"?");
+		double gpa = Double.parseDouble(keyboardIn.nextLine()); 
+		
+		System.out.println("When did you start attending "+schoolName+"?");
+		String startDate = keyboardIn.nextLine(); 
+		
+		System.out.println("When did you stop attending "+schoolName+"? (If still attending, please say 'Present')");
+		String endDate = keyboardIn.nextLine(); 
+		
+		//TODO continuous prompt for honors/awards
+		
+		School currentSchool = new School(startDate, endDate, schoolName, schoolLocation, gpa);
+		
+		currentStandardResume.addSchool(currentSchool);
+		
+		return currentStandardResume;
+	}
+	
+	private StandardResume processWorkExperience(StandardResume currentStandardResume) {
+		
+		System.out.println("Please enter your the name of the company you would like to add.");
+		String companyName = keyboardIn.nextLine(); 
+		
+		System.out.println("When did you start working at "+companyName+"?");
+		String startDate = keyboardIn.nextLine(); 
+		
+		System.out.println("When did you stop working at "+companyName+"? (If still employed, please say 'Present')");
+		String endDate = keyboardIn.nextLine(); 
+		
+		System.out.println("What was your title at "+companyName+"?");
+		String jobTitle = keyboardIn.nextLine(); 
+		
+		//TODO continuous prompt for responsibilities
+		
+		Job currentJob = new Job(jobTitle, startDate, endDate, companyName);
+		
+		currentStandardResume.addJob(currentJob);
+		
+		return currentStandardResume;
+	}
+	
+	private StandardResume processSkill(StandardResume currentStandardResume) {
+		System.out.println("Please enter the skill you would like to add.");
+		String newSkill = keyboardIn.nextLine(); // TODO Right now only takes in one word at a time, should get it to take in a phrase
+		
+		currentStandardResume.addSkill(newSkill);
+		
+		return currentStandardResume;
 	}
 }
