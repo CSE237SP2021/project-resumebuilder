@@ -86,7 +86,8 @@ public class Menu {
 			//Can't implement til we discuss resume instantiation, but my thought is something like
 			
 			System.out.println("Please enter the skill you would like to add.");
-			String newSkill = keyboardIn.nextLine(); // TODO For some reason this line is not accepting input as expected
+			String newSkill = keyboardIn.next(); // TODO Right now only takes in one word at a time, should get it to take in a phrase
+			System.out.println(newSkill);
 			
 			// currentStandardResume.addSkill(newSkill);
 			// displayStandardResumeMenu();
