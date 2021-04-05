@@ -49,9 +49,9 @@ public class School {
 		return this.gpa;
 	}
 	
-	/*
-	public List<String> getHonorsAwards() {
-		return this.honors_awards;
-	}
-	*/
+	
+//	public List<String> getHonorsAwards() {
+//		return this.honors_awards;
+//	}
+	
 }

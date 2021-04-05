@@ -14,13 +14,13 @@ class SchoolTests {
 		assertNotNull(school_test);
 	}
 
-	@Test
-	void testAddHonorsAwards() {
-		School school_test = new School("August 2014", "May 2018", "Bob Jones High School", "Madison, AL", 3.69);
-		String honors_awards_test = "Dean's List, AP Scholar 2017";
-		school_test.addHonorsAwards(honors_awards_test);
-		assertNotNull(school_test.getHonorsAwards());
-	}
+//	@Test
+//	void testAddHonorsAwards() {
+//		School school_test = new School("August 2014", "May 2018", "Bob Jones High School", "Madison, AL", 3.69);
+//		String honors_awards_test = "Dean's List, AP Scholar 2017";
+//		school_test.addHonorsAwards(honors_awards_test);
+//		assertNotNull(school_test.getHonorsAwards());
+//	}
 	
 	@Test
 	void testGetStartDate() {
