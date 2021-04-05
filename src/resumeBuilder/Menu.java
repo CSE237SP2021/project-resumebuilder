@@ -75,6 +75,10 @@ public class Menu {
 		} else if (standardResumeOption==4) {				
 			currentStandardResume=processSkill(currentStandardResume);
 			resetStandardResumeMenu(currentStandardResume);
+		} else if (standardResumeOption==5) {
+			String filePath = promptForDestination();
+			WordCreator wordCreator = new WordCreator(currentStandardResume, filePath);
+			wordCreator.createWordDocument();
 		} else {
 			displayExitMessage();
 			// TODO update this else if standard resume menu changes (i expect it to)
@@ -104,7 +108,8 @@ public class Menu {
 		System.out.println("2. Academic History");
 		System.out.println("3. Work Experience");
 		System.out.println("4. Skills");
-		System.out.println("5. Exit");
+		System.out.println("5. Save as word document");
+		System.out.println("6. Exit");
 		//Potentially change exit to "cancel" in the future and then have a "next" option that takes you to a formatting menu
 	}
 	
@@ -224,5 +229,10 @@ public class Menu {
 		currentStandardResume.addSkill(newSkill);
 		
 		return currentStandardResume;
+	}
+	
+	private String promptForDestination() {
+		System.out.println("What file path do you want your resume stored at? (Give absolute path, )");
+		return keyboardIn.nextLine();
 	}
 }
