@@ -184,15 +184,15 @@ public class Menu {
 		System.out.println("What is/was your GPA at "+schoolName+"?");
 		double gpa = Double.parseDouble(keyboardIn.nextLine()); 
 		
-		System.out.println("When did you start attending "+schoolName+"?");
+		System.out.println("When did you start attending "+schoolName+"? (e.g. August 2018)");
 		String startDate = keyboardIn.nextLine(); 
 		
 		System.out.println("When did you stop attending "+schoolName+"? (If still attending, please say 'Present')");
 		String endDate = keyboardIn.nextLine(); 
 		
-		//TODO continuous prompt for honors/awards
-		
 		School currentSchool = new School(startDate, endDate, schoolName, schoolLocation, gpa);
+		
+		currentSchool=promptForHonorsOrAwards(currentSchool);
 		
 		currentStandardResume.addSchool(currentSchool);
 		
@@ -213,9 +213,9 @@ public class Menu {
 		System.out.println("What was your title at "+companyName+"?");
 		String jobTitle = keyboardIn.nextLine(); 
 		
-		//TODO continuous prompt for responsibilities
-		
 		Job currentJob = new Job(jobTitle, startDate, endDate, companyName);
+		
+		currentJob=promptForResponsibilities(currentJob);
 		
 		currentStandardResume.addJob(currentJob);
 		
@@ -224,11 +224,45 @@ public class Menu {
 	
 	private StandardResume processSkill(StandardResume currentStandardResume) {
 		System.out.println("Please enter the skill you would like to add.");
-		String newSkill = keyboardIn.nextLine(); // TODO Right now only takes in one word at a time, should get it to take in a phrase
+		String newSkill = keyboardIn.nextLine(); 
 		
 		currentStandardResume.addSkill(newSkill);
 		
 		return currentStandardResume;
+	}
+	
+	private Job promptForResponsibilities(Job currentJob) {
+		String userInput="";
+		
+		while(!userInput.equals("done")) {
+			System.out.println("Please enter the next responsibility you have/had at "+currentJob.getCompany()+". Or, type 'done' if you are finished.");
+			userInput=keyboardIn.nextLine();
+			
+			if(!userInput.equals("done")) {
+				currentJob.addBullet(userInput);
+			}
+		}
+		
+		System.out.println("Exiting job responsibilities section...");
+		
+		return currentJob;
+	}
+	
+	private School promptForHonorsOrAwards(School currentSchool) {
+		String userInput="";
+		
+		while(!userInput.equals("done")) {
+			System.out.println("Please enter the next honor or award you received while attending "+currentSchool.getSchoolName()+". Or, type 'done' if you are finished.");
+			userInput=keyboardIn.nextLine();
+			
+			if(!userInput.equals("done")) {
+				currentSchool.addHonorsAwards(userInput);
+			}
+		}
+		
+		System.out.println("Exiting academic honors/awards section...");
+		
+		return currentSchool;
 	}
 	
 	private String promptForDestination() {
