@@ -49,7 +49,7 @@ public class School {
 	}
 
 	public List<String> getHonorsAwards() {
-		return this.honors_awards;
+		return this.honorsAwards;
 	}
 	
 }
