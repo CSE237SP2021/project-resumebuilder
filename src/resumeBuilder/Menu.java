@@ -20,10 +20,4 @@ public interface Menu {
 	
 	public String promptForDestination();
 	
-	public Job promptForResponsibilities(Job currentJob);
-	
-	public School promptForHonorsOrAwards(School currentSchool);
-	
-	public void displayExitMessage();
-	
 }

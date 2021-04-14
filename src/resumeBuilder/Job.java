@@ -2,7 +2,6 @@ package resumeBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO uncomment descriptions stuff once continuous prompt is set up in Menu
 public class Job {
 	String startDate;
 	String endDate;
@@ -56,7 +55,6 @@ public class Job {
 		this.company = company;
 	}
 
-	
 	public List<String> getDescriptions() {
 		return descriptions;
 	}

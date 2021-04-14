@@ -28,7 +28,6 @@ public class School {
 		this.honorsAwards.add(honor_award);
 	}
 	
-	
 	public String getStartDate() {
 		return this.startDate;
 	}
@@ -48,10 +47,9 @@ public class School {
 	public double getGPA() {
 		return this.gpa;
 	}
-	
-	
+
 	public List<String> getHonorsAwards() {
-		return this.honorsAwards;
+		return this.honors_awards;
 	}
 	
 }
