@@ -210,9 +210,9 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("What was your title at "+orgName+"?");
 		String positionTitle = keyboardIn.nextLine(); 
 		
-		//TODO continuous prompt for responsibilities
-		
 		Activity currentActivity = new Activity(startDate, endDate, positionTitle, orgName);
+				
+		currentActivity=promptForTasks(currentActivity);
 		
 		currentFederalResume.addActivity(currentActivity);
 		
@@ -220,10 +220,19 @@ public class FederalResumeMenu implements Menu {
 	}
 	
 	private FederalResume processSkill(FederalResume currentFederalResume) {
-		System.out.println("Please enter the skill you would like to add.");
-		String newSkill = keyboardIn.nextLine();
+		String newSkill="";
 		
-		currentFederalResume.addSkill(newSkill);
+		while(!newSkill.equals("done")) {
+			System.out.println("Please enter the next skill you would like to add. Or, type 'done' if you are finished.");
+			
+			newSkill=keyboardIn.nextLine();
+			
+			if(!newSkill.equals("done")) {
+				currentFederalResume.addSkill(newSkill);
+			}
+		}
+		
+		System.out.println("Exiting skills section...");
 		
 		return currentFederalResume;
 	}
@@ -282,6 +291,23 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("Exiting job responsibilities section...");
 		
 		return currentJob;
+	}
+	
+	public Activity promptForTasks(Activity currentActivity) {
+		String userInput="";
+		
+		while(!userInput.equals("done")) {
+			System.out.println("Please enter the next responsibility you have/had at "+currentActivity.getOrganization()+". Or, type 'done' if you are finished.");
+			userInput=keyboardIn.nextLine();
+			
+			if(!userInput.equals("done")) {
+				currentActivity.addDescription(userInput);
+			}
+		}
+		
+		System.out.println("Exiting job responsibilities section...");
+		
+		return currentActivity;
 	}
 
 	@Override

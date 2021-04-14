@@ -4,20 +4,9 @@ import java.util.Scanner;
 
 public class RunResumeBuilder {
 	
-	enum TemplateMenuEnum {	
-		STANDARD_RESUME,
-		CV,
-		TECHNICAL_RESUME,
-		FEDERAL_RESUME,
-		HS_RESUME,
-		UNDERGRAD_RESEARCH_RESUME,
-		EXIT
-	};
-	
 	public Scanner keyboardIn = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		RunResumeBuilder runResumeBuilder = new RunResumeBuilder();
 		runResumeBuilder.runTemplateMenu();
 	}
