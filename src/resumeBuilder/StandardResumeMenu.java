@@ -110,7 +110,7 @@ public class StandardResumeMenu implements Menu{
 
 	@Override
 	public Resume processContactInformation(Resume currentStandardResume) {
-		System.out.println("Please enter your first name.");
+		System.out.println("Please enter your full name.");
 		String firstName = keyboardIn.nextLine(); 
 		
 		System.out.println("Please enter your email.");
@@ -138,8 +138,13 @@ public class StandardResumeMenu implements Menu{
 		String schoolLocation = keyboardIn.nextLine(); 
 		
 		System.out.println("What is/was your GPA at "+schoolName+"?");
-		double gpa = Double.parseDouble(keyboardIn.nextLine()); 
-		
+		double gpa;
+		try {
+			 gpa = Double.parseDouble(keyboardIn.nextLine()); 
+		} catch (NumberFormatException formatError) {
+			 gpa = 0.0;
+			 System.out.println("No GPA entered. Will be set to 0.0.");
+		}		
 		System.out.println("When did you start attending "+schoolName+"? (e.g. August 2018)");
 		String startDate = keyboardIn.nextLine(); 
 		

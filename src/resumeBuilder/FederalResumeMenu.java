@@ -86,7 +86,7 @@ public class FederalResumeMenu implements Menu {
 	@Override
 	public Resume processContactInformation(Resume currentFederalResume) {
 		
-		System.out.println("Please enter your first name.");
+		System.out.println("Please enter your full name.");
 		String firstName = keyboardIn.nextLine(); 
 		
 		System.out.println("Please enter your email.");
