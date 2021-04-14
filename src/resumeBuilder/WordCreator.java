@@ -5,8 +5,10 @@ import com.spire.doc.documents.*;
 import com.spire.doc.fields.TextRange;
 
 public class WordCreator {
+  
 	private static final int successfulSave =0;
 	private static final int defaultFile =1;
+  
 	private StandardResume resume;
 	private String destination;
 	
@@ -27,10 +29,16 @@ public class WordCreator {
 		
 		try {
 			document.saveToFile(destination, FileFormat.Docx);
+      System.out.println("Thanks for using ResumeBuilder! Finishing program.");
 			return successfulSave;
 		} catch (Exception e) {
-			System.out.println("File path doesn't exist, so file saved in default file \"output/resume.docx\"");
-			document.saveToFile("output/resume.docx", FileFormat.Docx);
+			if (destination == "") {
+				System.out.println("No file path given, file saved in default file path: \"output/resume.docx\"");
+				document.saveToFile("output/resume.docx", FileFormat.Docx);
+			} else {
+				System.out.println("Invalid File Path, file saved in default file \"output/resume.docx\"");
+				document.saveToFile("output/resume.docx", FileFormat.Docx);
+			}
 			return defaultFile;
 		}
 	}

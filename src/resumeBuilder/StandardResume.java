@@ -9,9 +9,8 @@ public class StandardResume implements Resume {
 	private List<Job> jobs = new ArrayList<Job>();
 	private List<String> skills = new ArrayList<String>();
 	
-
 	public StandardResume() {
-		this.contactInfo = new ContactInformation();
+		
 	}
 	
 	@Override

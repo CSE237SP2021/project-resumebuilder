@@ -28,7 +28,9 @@
 	- A user should be able to receive a file of a CV
 
 # Obstacles/Issues
-
+	- Having difficulty incorporating TDD to our UI stories
+	- Needed to refactor our complex/large Menu class into an interface that implements more specific methods for specific resumes
+		- Had issues with command line compilation when creating packages and relying on internal class dependencies
 
 # Running the Program from the Command Line
 	- See run_resume_builder.sh
