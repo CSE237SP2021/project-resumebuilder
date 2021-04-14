@@ -75,6 +75,7 @@ public class WordCreator {
 		Paragraph educationHeader = section.addParagraph();
 		TextRange educationTR = educationHeader.appendText("Education");
 		educationTR.getCharacterFormat().setFontSize(14);
+		educationTR.getCharacterFormat().setBold(true);
 		for(School school: resume.getSchools()) {
 			//add school info, such as name/location/dates
 			Paragraph schoolName = section.addParagraph();
@@ -111,6 +112,7 @@ public class WordCreator {
 		Paragraph jobsHeader = section.addParagraph();
 		TextRange jobsTR = jobsHeader.appendText("Work Experience");
 		jobsTR.getCharacterFormat().setFontSize(14);
+		jobsTR.getCharacterFormat().setBold(true);
 		for(Job job : resume.getJobs()) {
 			//add company and job title
 			Paragraph newJob = section.addParagraph();
@@ -137,6 +139,7 @@ public class WordCreator {
 		Paragraph skillsHeader = section.addParagraph();
 		TextRange skillsTR = skillsHeader.appendText("Skills");
 		skillsTR.getCharacterFormat().setFontSize(14);
+		skillsTR.getCharacterFormat().setBold(true);
 		for(String skill: resume.getSkills()) {
 			Paragraph newParagraph = section.addParagraph();
 			newParagraph.appendText(skill);
