@@ -9,7 +9,6 @@ public class References {
 	String referencePhoneNumber;
 	String referenceOrganization;
 	
-	//Opted for a default constructor so some of this info can be optionally added
 	public References() {}
 	
 	public void addReferenceName(String referenceName) {

@@ -57,10 +57,19 @@ public class StandardResumeMenu implements Menu{
 	}
 
 	private Resume processSkill(StandardResume currentStandardResume) {
-		System.out.println("Please enter the skill you would like to add.");
-		String newSkill = keyboardIn.nextLine(); // TODO Right now only takes in one word at a time, should get it to take in a phrase
+		String newSkill="";
 		
-		currentStandardResume.addSkill(newSkill);
+		while(!newSkill.equals("done")) {
+			System.out.println("Please enter the next skill you would like to add. Or, type 'done' if you are finished.");
+			
+			newSkill=keyboardIn.nextLine();
+			
+			if(!newSkill.equals("done")) {
+				currentStandardResume.addSkill(newSkill);
+			}
+		}
+		
+		System.out.println("Exiting skills section...");
 		
 		return currentStandardResume;
 	}

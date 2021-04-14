@@ -7,7 +7,8 @@ import com.spire.doc.fields.TextRange;
 public class WordCreator {
   
 	private static final int successfulSave =0;
-	private static final int defaultFile =1;
+	private static final int noFilePathGiven =1;
+	private static final int defaultFile =2;
   
 	private StandardResume resume;
 	private String destination;
@@ -20,26 +21,36 @@ public class WordCreator {
 	public int createWordDocument() {
 		Document document = new Document();
 		Section section = document.addSection();
-		
-		addContactInfo(section);
+		String docTitle = "";
+		if(resume.getContactInfo() != null) {
+			addContactInfo(section);
+			String name = resume.getContactInfo().getName();
+			docTitle = name.replaceAll("\\s", "");
+			
+		}
 		addEducation(section);
 		addJobs(section);
 		addSkills(section);
 		
 		
+		
+		
 		try {
 			document.saveToFile(destination, FileFormat.Docx);
-      System.out.println("Thanks for using ResumeBuilder! Finishing program.");
+			System.out.println("Thanks for using ResumeBuilder! Finishing program.");
 			return successfulSave;
 		} catch (Exception e) {
 			if (destination == "") {
+			
 				System.out.println("No file path given, file saved in default file path: \"output/resume.docx\"");
-				document.saveToFile("output/resume.docx", FileFormat.Docx);
+				document.saveToFile("output/resume" + docTitle + ".docx", FileFormat.Docx);
+				return noFilePathGiven;
 			} else {
 				System.out.println("Invalid File Path, file saved in default file \"output/resume.docx\"");
-				document.saveToFile("output/resume.docx", FileFormat.Docx);
+				document.saveToFile("output/resume" + docTitle + ".docx", FileFormat.Docx);
+				return defaultFile;
 			}
-			return defaultFile;
+			
 		}
 	}
 	
@@ -70,6 +81,7 @@ public class WordCreator {
 		Paragraph educationHeader = section.addParagraph();
 		TextRange educationTR = educationHeader.appendText("Education");
 		educationTR.getCharacterFormat().setFontSize(14);
+		educationTR.getCharacterFormat().setBold(true);
 		for(School school: resume.getSchools()) {
 			//add school info, such as name/location/dates
 			Paragraph schoolName = section.addParagraph();
@@ -106,6 +118,7 @@ public class WordCreator {
 		Paragraph jobsHeader = section.addParagraph();
 		TextRange jobsTR = jobsHeader.appendText("Work Experience");
 		jobsTR.getCharacterFormat().setFontSize(14);
+		jobsTR.getCharacterFormat().setBold(true);
 		for(Job job : resume.getJobs()) {
 			//add company and job title
 			Paragraph newJob = section.addParagraph();
@@ -132,6 +145,7 @@ public class WordCreator {
 		Paragraph skillsHeader = section.addParagraph();
 		TextRange skillsTR = skillsHeader.appendText("Skills");
 		skillsTR.getCharacterFormat().setFontSize(14);
+		skillsTR.getCharacterFormat().setBold(true);
 		for(String skill: resume.getSkills()) {
 			Paragraph newParagraph = section.addParagraph();
 			newParagraph.appendText(skill);

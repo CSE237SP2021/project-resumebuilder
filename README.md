@@ -33,4 +33,5 @@
 		- Had issues with command line compilation when creating packages and relying on internal class dependencies
 
 # Running the Program from the Command Line
-	- See run_resume_builder.sh
+	- Typically: See run_resume_builder.sh
+	- If you're runnning the program multiple times, rename or delete your first generated resume document in the output folder to prevent conflicts
