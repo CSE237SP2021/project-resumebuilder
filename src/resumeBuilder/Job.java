@@ -7,14 +7,13 @@ public class Job {
 	String endDate;
 	String jobTitle;
 	String company;
-	List<String> descriptions;
+	List<String> descriptions = new ArrayList<String>();
 	
 	public Job(String job, String start, String end, String company) {
 		startDate = start;
 		endDate = end;
 		jobTitle = job;
 		this.company = company;
-		descriptions = new ArrayList<String>();
 	}
 	
 	public Job() {}
@@ -58,5 +57,4 @@ public class Job {
 	public List<String> getDescriptions() {
 		return descriptions;
 	}
-	 
 }
