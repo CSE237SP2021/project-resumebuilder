@@ -21,13 +21,18 @@ public class WordCreator {
 	public int createWordDocument() {
 		Document document = new Document();
 		Section section = document.addSection();
-		
+		String docTitle = "";
 		if(resume.getContactInfo() != null) {
 			addContactInfo(section);
+			String name = resume.getContactInfo().getName();
+			docTitle = name.replaceAll("\\s", "");
+			
 		}
 		addEducation(section);
 		addJobs(section);
 		addSkills(section);
+		
+		
 		
 		
 		try {
@@ -36,12 +41,13 @@ public class WordCreator {
 			return successfulSave;
 		} catch (Exception e) {
 			if (destination == "") {
+			
 				System.out.println("No file path given, file saved in default file path: \"output/resume.docx\"");
-				document.saveToFile("output/resume.docx", FileFormat.Docx);
+				document.saveToFile("output/resume" + docTitle + ".docx", FileFormat.Docx);
 				return noFilePathGiven;
 			} else {
 				System.out.println("Invalid File Path, file saved in default file \"output/resume.docx\"");
-				document.saveToFile("output/resume.docx", FileFormat.Docx);
+				document.saveToFile("output/resume" + docTitle + ".docx", FileFormat.Docx);
 				return defaultFile;
 			}
 			
