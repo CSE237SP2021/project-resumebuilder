@@ -20,8 +20,16 @@ class JobTest {
 		
 		assertNull(job.getEndDate());
 		assertEquals(company, job.getCompany());
-		assertEquals(startDate, job.getCompany());
+		assertEquals(startDate, job.getStartDate());
 		assertEquals(jobTitle, job.getJobTitle());
+	}
+	
+	@Test
+	void testAddBullet() {
+		Job job = new Job();
+		String description = "worked with Java programming language";
+		job.addBullet(description);
+		assertTrue(job.getDescriptions().contains(description));
 	}
 
 }
