@@ -16,10 +16,6 @@ See Development branch for most up to date code
 	- A user should be able to continuously enter job responsibilities for a specific role
 
 # USER STORIES (To-dos and In Progress)
-	- A user should be able to add multiple jobs
-	- A user should be able to add multiple academic institutions
-	- A user should be able to add multiple clubs or volunteer activities
-	- A user should be able to add multiple references
 	- A user should be able to receive a file of their resume via email
 	- A user should be able to receive a file of a federal resume
 	- A user should be able to input info for an undergrad research resume
@@ -28,11 +24,10 @@ See Development branch for most up to date code
 	- A user should be able to receive a file of a CV
 
 # Obstacles/Issues
-	- Struggling with running our program from the command line due to external dependencies
 	- Having difficulty incorporating TDD to our UI stories
 	- Needed to refactor our complex/large Menu class into an interface that implements more specific methods for specific resumes
 		- Had issues with command line compilation when creating packages and relying on internal class dependencies
 
 # Running the Program from the Command Line
-	- Typically: See run_resume_builder.sh
-	- Right now: Please run the program via Eclipse, via the RunResumeBuilder.java class. We are experiencing trouble with external dependencies, as mentioned in obstacles/issues, so running from the command line produces errors. Make sure that the .jar files in lib are in the class path (by right-clicking on the program, going to build path, configure build path, libraries, and examining the class path).
+	- See run_resume_builder.sh
+	- If you're runnning the program multiple times, rename or delete your first generated resume document in the output folder to prevent conflicts
