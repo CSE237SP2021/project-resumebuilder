@@ -222,10 +222,19 @@ public class FederalResumeMenu implements Menu {
 	}
 	
 	private FederalResume processSkill(FederalResume currentFederalResume) {
-		System.out.println("Please enter the skill you would like to add.");
-		String newSkill = keyboardIn.nextLine();
+		String newSkill="";
 		
-		currentFederalResume.addSkill(newSkill);
+		while(!newSkill.equals("done")) {
+			System.out.println("Please enter the next skill you would like to add. Or, type 'done' if you are finished.");
+			
+			newSkill=keyboardIn.nextLine();
+			
+			if(!newSkill.equals("done")) {
+				currentFederalResume.addSkill(newSkill);
+			}
+		}
+		
+		System.out.println("Exiting skills section...");
 		
 		return currentFederalResume;
 	}

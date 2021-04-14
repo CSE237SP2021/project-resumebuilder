@@ -18,8 +18,8 @@ public class Job {
 	
 	public Job() {}
 	
-	public void addBullet(String s) {
-		descriptions.add(s);
+	public void addBullet(String responsibility) {
+		descriptions.add(responsibility);
 	}
 
 	public String getStartDate() {
