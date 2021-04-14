@@ -8,23 +8,21 @@ public class Job {
 	String endDate;
 	String jobTitle;
 	String company;
-	//List<String> descriptions;
+	List<String> descriptions;
 	
 	public Job(String job, String start, String end, String company) {
 		startDate = start;
 		endDate = end;
 		jobTitle = job;
 		this.company = company;
-		//descriptions = new ArrayList<String>();
+		descriptions = new ArrayList<String>();
 	}
 	
 	public Job() {}
 	
-	/*
 	public void addBullet(String s) {
 		descriptions.add(s);
 	}
-	*/
 
 	public String getStartDate() {
 		return startDate;
@@ -58,9 +56,9 @@ public class Job {
 		this.company = company;
 	}
 
-	/*
+	
 	public List<String> getDescriptions() {
 		return descriptions;
 	}
-	*/	 
+	 
 }

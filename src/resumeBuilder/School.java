@@ -12,7 +12,7 @@ public class School {
 	private String schoolName;
 	private String schoolLocation;
 	private double gpa;
-	//private List<String> honors_awards; //Current config only includes honors and awards associated with a particular School obj
+	private List<String> honorsAwards; //Current config only includes honors and awards associated with a particular School obj
 	
 	public School (String startDate, String endDate, String schoolName, String schoolLocation, double gpa) {
 		this.startDate = startDate;
@@ -20,14 +20,14 @@ public class School {
 		this.schoolName = schoolName;
 		this.schoolLocation = schoolLocation;
 		this.gpa = gpa;
-		//this.honors_awards = new ArrayList<String>();
+		this.honorsAwards = new ArrayList<String>();
 	}
 	
-	/*
+	
 	public void addHonorsAwards (String honor_award) {
-		this.honors_awards.add(honor_award);
+		this.honorsAwards.add(honor_award);
 	}
-	*/
+	
 	
 	public String getStartDate() {
 		return this.startDate;
@@ -50,8 +50,8 @@ public class School {
 	}
 	
 	
-//	public List<String> getHonorsAwards() {
-//		return this.honors_awards;
-//	}
+	public List<String> getHonorsAwards() {
+		return this.honorsAwards;
+	}
 	
 }
