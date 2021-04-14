@@ -210,9 +210,11 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("What was your title at "+orgName+"?");
 		String positionTitle = keyboardIn.nextLine(); 
 		
+		Activity currentActivity = new Activity(startDate, endDate, positionTitle, orgName);
+		
 		//TODO continuous prompt for responsibilities
 		
-		Activity currentActivity = new Activity(startDate, endDate, positionTitle, orgName);
+		currentActivity=promptForTasks(currentActivity);
 		
 		currentFederalResume.addActivity(currentActivity);
 		
@@ -282,6 +284,23 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("Exiting job responsibilities section...");
 		
 		return currentJob;
+	}
+	
+	public Activity promptForTasks(Activity currentActivity) {
+		String userInput="";
+		
+		while(!userInput.equals("done")) {
+			System.out.println("Please enter the next responsibility you have/had at "+currentActivity.getOrganization()+". Or, type 'done' if you are finished.");
+			userInput=keyboardIn.nextLine();
+			
+			if(!userInput.equals("done")) {
+				currentActivity.addDescription(userInput);
+			}
+		}
+		
+		System.out.println("Exiting job responsibilities section...");
+		
+		return currentActivity;
 	}
 
 	@Override
