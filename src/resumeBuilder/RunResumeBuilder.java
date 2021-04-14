@@ -7,7 +7,6 @@ public class RunResumeBuilder {
 	public Scanner keyboardIn = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		RunResumeBuilder runResumeBuilder = new RunResumeBuilder();
 		runResumeBuilder.runTemplateMenu();
 	}

@@ -10,7 +10,6 @@ public class FederalResume implements Resume{
 	private String federalExperience;
 	private String clearance;
 	private String purposeStatement;
-	//private FederalResumeHeaderInfo federalResumeHeaderInfo;
 	private List<School> schools = new ArrayList<School>();
 	private List<Activity> activities = new ArrayList<Activity>();
 	private List<Job> jobs = new ArrayList<Job>();
@@ -65,13 +64,6 @@ public class FederalResume implements Resume{
 	public String getPurposeStatement() {
 		return this.purposeStatement;
 	}
-//	public void setFederalResumeHeaderInfo(FederalResumeHeaderInfo federalResumeHeaderInfo) {
-//		this.federalResumeHeaderInfo = federalResumeHeaderInfo;
-//	}
-//	
-//	public FederalResumeHeaderInfo getFederalResumeHeaderInfo() {
-//		return this.federalResumeHeaderInfo;
-//	}
 
 	@Override
 	public void addSchool(School school) {

@@ -211,9 +211,7 @@ public class FederalResumeMenu implements Menu {
 		String positionTitle = keyboardIn.nextLine(); 
 		
 		Activity currentActivity = new Activity(startDate, endDate, positionTitle, orgName);
-		
-		//TODO continuous prompt for responsibilities
-		
+				
 		currentActivity=promptForTasks(currentActivity);
 		
 		currentFederalResume.addActivity(currentActivity);
