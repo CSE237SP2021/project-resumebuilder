@@ -4,6 +4,8 @@ public interface Menu {
 	
 	public void runMenu();
 	
+	public void displayExitMessage();
+	
 	public void displayMenu();
 	
 	public int getMenuSelection();
@@ -15,6 +17,10 @@ public interface Menu {
 	public Resume processAcademicInformation(Resume currentResume);
 	
 	public Resume processWorkExperience(Resume currentResume);
+	
+	public Job promptForResponsibilities(Job currentJob);
+	
+	public School promptForHonorsOrAwards(School currentSchool);
 	
 	public void resetMenu(Resume currentResume);
 	

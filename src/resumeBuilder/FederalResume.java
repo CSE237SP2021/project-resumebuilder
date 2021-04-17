@@ -10,15 +10,9 @@ public class FederalResume implements Resume{
 	private String federalExperience;
 	private String clearance;
 	private String purposeStatement;
-	//private FederalResumeHeaderInfo federalResumeHeaderInfo;
 	private List<School> schools = new ArrayList<School>();
 	private List<Activity> activities = new ArrayList<Activity>();
-	private List<Job> jobs = new ArrayList<Job>();
-		//Include: start end dates
-		//Num hrs per week
-		//GS level and position title
-		//Salary
-		//Description
+	private List<FederalJob> federalJobs = new ArrayList<FederalJob>();
 	private List<String> skills = new ArrayList<String>();
 	private List<References> references = new ArrayList<References>();
 	
@@ -65,13 +59,6 @@ public class FederalResume implements Resume{
 	public String getPurposeStatement() {
 		return this.purposeStatement;
 	}
-//	public void setFederalResumeHeaderInfo(FederalResumeHeaderInfo federalResumeHeaderInfo) {
-//		this.federalResumeHeaderInfo = federalResumeHeaderInfo;
-//	}
-//	
-//	public FederalResumeHeaderInfo getFederalResumeHeaderInfo() {
-//		return this.federalResumeHeaderInfo;
-//	}
 
 	@Override
 	public void addSchool(School school) {
@@ -91,14 +78,12 @@ public class FederalResume implements Resume{
 		return this.activities;
 	}
 
-	@Override
-	public void addJob(Job job) {
-		jobs.add(job);		
+	public void addFederalJob(FederalJob federalJob) {
+		federalJobs.add(federalJob);		
 	}
 
-	@Override
-	public List<Job> getJobs() {
-		return jobs;
+	public List<FederalJob> getFederalJobs() {
+		return federalJobs;
 	}
 	
 	public void addSkill(String skill) {
@@ -115,5 +100,16 @@ public class FederalResume implements Resume{
 
 	public List<References> getReferences() {
 		return this.references;
+	}
+
+	@Override
+	public void addJob(Job job) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public List<Job> getJobs() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

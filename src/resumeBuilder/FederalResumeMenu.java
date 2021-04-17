@@ -132,8 +132,8 @@ public class FederalResumeMenu implements Menu {
 		return currentFederalResume;
 	}
 
-	@Override
-	public Resume processWorkExperience(Resume currentFederalResume) {
+//	@Override
+	public Resume processWorkExperience(FederalResume currentFederalResume) {
 		
 		System.out.println("Please enter your the name of the company you would like to add.");
 		String companyName = keyboardIn.nextLine(); 
@@ -147,11 +147,17 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("What was your title at "+companyName+"?");
 		String jobTitle = keyboardIn.nextLine(); 
 		
-		Job currentJob = new Job(jobTitle, startDate, endDate, companyName);
+		System.out.println("What was your GS Level at "+companyName+"? (Press enter if not applicable)");
+		String GSLevel = keyboardIn.nextLine(); 
 		
-		currentJob=promptForResponsibilities(currentJob);
+		System.out.println("What was your salary at "+companyName+"?");
+		String salary = keyboardIn.nextLine(); 
 		
-		currentFederalResume.addJob(currentJob);
+		FederalJob currentFederalJob = new FederalJob(jobTitle, startDate, endDate, companyName, GSLevel, salary);
+		
+		currentFederalJob=promptForFedResponsibilities(currentFederalJob);
+		
+		currentFederalResume.addFederalJob(currentFederalJob);
 		
 		return currentFederalResume;
 	}
@@ -247,9 +253,7 @@ public class FederalResumeMenu implements Menu {
 		reference.addReferenceEmail(referenceEmail);
 		reference.addReferencePhoneNumber(referencePhoneNumber);
 		reference.addReferenceOrganization(referenceOrg);
-		
-		//TODO: ability for user to add multiple references
-		
+				
 		return currentFederalResume;
 	}
 
@@ -268,20 +272,24 @@ public class FederalResumeMenu implements Menu {
 
 	@Override
 	public Job promptForResponsibilities(Job currentJob) {
+		return null;
+	}
+	
+	public FederalJob promptForFedResponsibilities(FederalJob currentFederalJob) {
 		String userInput="";
 		
 		while(!userInput.equals("done")) {
-			System.out.println("Please enter the next responsibility you have/had at "+currentJob.getCompany()+". Or, type 'done' if you are finished.");
+			System.out.println("Please enter the next responsibility you have/had at "+currentFederalJob.getCompany()+". Or, type 'done' if you are finished.");
 			userInput=keyboardIn.nextLine();
 			
 			if(!userInput.equals("done")) {
-				currentJob.addBullet(userInput);
+				currentFederalJob.addBullet(userInput);
 			}
 		}
 		
 		System.out.println("Exiting job responsibilities section...");
 		
-		return currentJob;
+		return currentFederalJob;
 	}
 
 	@Override
@@ -306,5 +314,11 @@ public class FederalResumeMenu implements Menu {
 	public void displayExitMessage() {
 		System.out.println("Exiting Resume Builder...");
 		System.out.println("Goodbye!");
+	}
+
+	@Override
+	public Resume processWorkExperience(Resume currentResume) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
