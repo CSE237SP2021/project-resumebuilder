@@ -5,13 +5,6 @@ import java.util.List;
 
 public class TechnicalResume implements Resume {
 	
-	//Education
-	//Work Experience
-	//Projects
-	//Skills: Software, Languages, etc
-	//Certificates
-	//Link to digital portfolio?
-	
 	ContactInformation contactInfo;
 	private List<School> schools = new ArrayList<School>();
 	private List<Job> jobs = new ArrayList<Job>();
@@ -19,7 +12,7 @@ public class TechnicalResume implements Resume {
 	private List<String> softwareSkills = new ArrayList<String>();
 	private List<String> programmingLanguageSkills = new ArrayList<String>();
 	private List<String> softSkills = new ArrayList<String>();
-	private List<String> certifications = new ArrayList<String>();
+	private List<Certification> certifications = new ArrayList<Certification>();
 
 	@Override
 	public void setContactInfo(ContactInformation contactInfo) {
@@ -84,11 +77,11 @@ public class TechnicalResume implements Resume {
 		return softSkills;
 	}
 	
-	public void addCertification(String certification) {
+	public void addCertification(Certification certification) {
 		certifications.add(certification);
 	}
 	
-	public List<String> getCertifications(){
+	public List<Certification> getCertifications(){
 		return certifications;
 	}
 }

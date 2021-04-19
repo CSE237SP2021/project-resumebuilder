@@ -64,11 +64,14 @@ public class TechnicalResumeMenu implements Menu {
 			currentTechnicalResume=processSkills((TechnicalResume) currentTechnicalResume, "soft");
 			resetMenu(currentTechnicalResume);
 		} else if (technicalResumeOption==8) {				
-			currentTechnicalResume=processVolunteerExperience((TechnicalResume) currentTechnicalResume);
+			currentTechnicalResume=processCertifications((TechnicalResume) currentTechnicalResume);
 			resetMenu(currentTechnicalResume);
 		} else if (technicalResumeOption==9) {				
-			currentTechnicalResume=processSkill((FederalResume) currentTechnicalResume);
+			System.out.println("Word Doc creation currently unsupported for our technical resume template.");
 			resetMenu(currentTechnicalResume);
+//			String filePath = promptForDestination();
+//			WordCreator wordCreator = new WordCreator(currentFederalResume, filePath);
+//			wordCreator.createWordDocument();
 		} else {
 			displayExitMessage();
 			return;
@@ -223,6 +226,26 @@ public class TechnicalResumeMenu implements Menu {
 		}
 		
 		System.out.println("Exiting "+skillType+" skills section...");
+		
+		return currentTechnicalResume;
+	}
+	
+	public Resume processCertifications(TechnicalResume currentTechnicalResume) {
+		System.out.println("Please enter the title of the certification you would like to add.");
+		String certificationTitle = keyboardIn.nextLine(); 
+		
+		System.out.println("When did you earn "+certificationTitle+"?");
+		String dateEarned = keyboardIn.nextLine(); 
+		
+		System.out.println("Please enter the name of the host/organization for your "+certificationTitle+".");
+		String hostName = keyboardIn.nextLine(); 
+		
+		System.out.println("Please enter any relevant details for "+certificationTitle+". (Optional: Hit return to skip.)");
+		String details = keyboardIn.nextLine(); 
+		
+		Certification currentCertification = new Certification(certificationTitle, hostName, dateEarned, details);
+		
+		currentTechnicalResume.addCertification(currentCertification);
 		
 		return currentTechnicalResume;
 	}
