@@ -79,7 +79,7 @@ public class FederalResume implements Resume{
 		this.activities.add(activity);
 	}
 	
-	public List<Activity> getActivity() {
+	public List<Activity> getActivities() {
 		return this.activities;
 	}
 

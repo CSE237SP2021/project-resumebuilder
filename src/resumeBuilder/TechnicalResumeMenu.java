@@ -67,11 +67,9 @@ public class TechnicalResumeMenu implements Menu {
 			currentTechnicalResume=processCertifications((TechnicalResume) currentTechnicalResume);
 			resetMenu(currentTechnicalResume);
 		} else if (technicalResumeOption==9) {				
-			System.out.println("Word Doc creation currently unsupported for our technical resume template.");
-			resetMenu(currentTechnicalResume);
-//			String filePath = promptForDestination();
-//			WordCreator wordCreator = new WordCreator(currentFederalResume, filePath);
-//			wordCreator.createWordDocument();
+			String filePath = promptForDestination();
+			WordCreator wordCreator = new WordCreator(currentTechnicalResume, filePath);
+			wordCreator.createWordDocument();
 		} else {
 			displayExitMessage();
 			return;

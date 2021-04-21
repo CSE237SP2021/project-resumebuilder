@@ -49,7 +49,7 @@ public class UndergradResearchResume implements Resume {
 		activities.add(activity);		
 	}
 
-	public List<Activity> getActivity() {
+	public List<Activity> getActivities() {
 		return activities;
 	}
 	
