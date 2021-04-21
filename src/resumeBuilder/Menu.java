@@ -4,6 +4,8 @@ public interface Menu {
 	
 	public void runMenu();
 	
+	public void displayExitMessage();
+	
 	public void displayMenu();
 	
 	public void displayExitMessage();
