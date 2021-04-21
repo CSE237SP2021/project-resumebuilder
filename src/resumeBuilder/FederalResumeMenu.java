@@ -21,16 +21,17 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("Please select the information you would like to add next.");
 		System.out.println("1. Contact Information");
 		System.out.println("2. Academic History");
-		System.out.println("3. Work Experience");
-		System.out.println("4. Citizenship Status");
-		System.out.println("5. Federal Experience");
-		System.out.println("6. Clearance");
-		System.out.println("7. Purpose Statement");
-		System.out.println("8. Volunteer Work and Community Involvement");
-		System.out.println("9. Skills");
-		System.out.println("10. References");
-		System.out.println("11. Save as word document");
-		System.out.println("12. Exit");
+		System.out.println("3. Federal Work Experience");
+		System.out.println("4. Regular Work Experience");
+		System.out.println("5. Citizenship Status");
+		System.out.println("6. Government or Military Experience");
+		System.out.println("7. Clearance");
+		System.out.println("8. Purpose Statement");
+		System.out.println("9. Volunteer Work and Community Involvement");
+		System.out.println("10. Skills");
+		System.out.println("11. References");
+		System.out.println("12. Save as word document");
+		System.out.println("13. Exit");
 		//Options from: https://www.sec.gov/jobs/sample-resume/sample-resume.pdf		
 	}
 
@@ -48,30 +49,33 @@ public class FederalResumeMenu implements Menu {
 			currentFederalResume=processAcademicInformation(currentFederalResume);
 			resetMenu(currentFederalResume);
 		} else if (federalResumeOption==3) {
+			currentFederalResume=processFederalWorkExperience((FederalResume) currentFederalResume);
+			resetMenu(currentFederalResume);
+		} else if (federalResumeOption==4) {
 			currentFederalResume=processWorkExperience(currentFederalResume);
 			resetMenu(currentFederalResume);
-		} else if (federalResumeOption==4) {				
+		} else if (federalResumeOption==5) {				
 			currentFederalResume=processCitizenshipStatus((FederalResume) currentFederalResume);
 			resetMenu(currentFederalResume);
-		} else if (federalResumeOption==5) {				
+		} else if (federalResumeOption==6) {				
 			currentFederalResume=processFederalExperience((FederalResume) currentFederalResume);
 			resetMenu(currentFederalResume);
-		} else if (federalResumeOption==6) {				
+		} else if (federalResumeOption==7) {				
 			currentFederalResume=processClearance((FederalResume) currentFederalResume);
 			resetMenu(currentFederalResume);
-		} else if (federalResumeOption==7) {				
+		} else if (federalResumeOption==8) {				
 			currentFederalResume=processPurposeStatement((FederalResume) currentFederalResume);
 			resetMenu(currentFederalResume);
-		} else if (federalResumeOption==8) {				
+		} else if (federalResumeOption==9) {				
 			currentFederalResume=processVolunteerExperience((FederalResume) currentFederalResume);
 			resetMenu(currentFederalResume);
-		} else if (federalResumeOption==9) {				
+		} else if (federalResumeOption==10) {				
 			currentFederalResume=processSkill((FederalResume) currentFederalResume);
 			resetMenu(currentFederalResume);
-		} else if (federalResumeOption==10) {				
-				currentFederalResume=processReferences((FederalResume) currentFederalResume);
+		} else if (federalResumeOption==11) {				
+				currentFederalResume=processReference((FederalResume) currentFederalResume);
 				resetMenu(currentFederalResume);
-		} else if (federalResumeOption==11) {
+		} else if (federalResumeOption==12) {
 			System.out.println("Word Doc creation unsupported for our federal resume template.");
 			resetMenu(currentFederalResume);
 //			String filePath = promptForDestination();
@@ -132,8 +136,31 @@ public class FederalResumeMenu implements Menu {
 		return currentFederalResume;
 	}
 
-//	@Override
-	public Resume processWorkExperience(FederalResume currentFederalResume) {
+	@Override
+	public Resume processWorkExperience(Resume currentFederalResume) {
+		
+		System.out.println("Please enter your the name of the company you would like to add.");
+		String companyName = keyboardIn.nextLine(); 
+		
+		System.out.println("When did you start working at "+companyName+"?");
+		String startDate = keyboardIn.nextLine(); 
+		
+		System.out.println("When did you stop working at "+companyName+"? (If still employed, please say 'Present')");
+		String endDate = keyboardIn.nextLine(); 
+		
+		System.out.println("What was your title at "+companyName+"?");
+		String jobTitle = keyboardIn.nextLine(); 
+		
+		Job currentJob = new Job(jobTitle, startDate, endDate, companyName);
+		
+		currentJob=promptForResponsibilities(currentJob);
+		
+		currentFederalResume.addJob(currentJob);
+		
+		return currentFederalResume;
+	}
+	
+	public Resume processFederalWorkExperience(FederalResume currentFederalResume) {
 		
 		System.out.println("Please enter your the name of the company you would like to add.");
 		String companyName = keyboardIn.nextLine(); 
@@ -234,7 +261,7 @@ public class FederalResumeMenu implements Menu {
 		return currentFederalResume;
 	}
 	
-	private FederalResume processReferences(FederalResume currentFederalResume) {
+	private FederalResume processReference(FederalResume currentFederalResume) {
 		System.out.println("Please enter the name of the reference you would like to add.");
 		String newReference = keyboardIn.nextLine();
 		
@@ -253,6 +280,8 @@ public class FederalResumeMenu implements Menu {
 		reference.addReferenceEmail(referenceEmail);
 		reference.addReferencePhoneNumber(referencePhoneNumber);
 		reference.addReferenceOrganization(referenceOrg);
+		
+		currentFederalResume.addReference(reference);
 				
 		return currentFederalResume;
 	}
@@ -272,7 +301,20 @@ public class FederalResumeMenu implements Menu {
 
 	@Override
 	public Job promptForResponsibilities(Job currentJob) {
-		return null;
+		String userInput="";
+		
+		while(!userInput.equals("done")) {
+			System.out.println("Please enter the next responsibility you have/had at "+currentJob.getCompany()+". Or, type 'done' if you are finished.");
+			userInput=keyboardIn.nextLine();
+			
+			if(!userInput.equals("done")) {
+				currentJob.addBullet(userInput);
+			}
+		}
+		
+		System.out.println("Exiting job responsibilities section...");
+		
+		return currentJob;	
 	}
 	
 	public FederalJob promptForFedResponsibilities(FederalJob currentFederalJob) {
@@ -316,9 +358,4 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("Goodbye!");
 	}
 
-	@Override
-	public Resume processWorkExperience(Resume currentResume) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
