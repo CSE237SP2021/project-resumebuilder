@@ -42,7 +42,8 @@ public class RunResumeBuilder {
 			
 		} else if(selectedTemplate == 2) {
 			
-			//TODO: Create technical resume menu and object
+			Menu technicalResumeMenu = new TechnicalResumeMenu();
+			technicalResumeMenu.runMenu();
 			
 		} else if(selectedTemplate == 3) {
 			
