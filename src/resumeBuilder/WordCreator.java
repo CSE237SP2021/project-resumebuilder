@@ -187,83 +187,8 @@ public class WordCreator {
 		}
 	}
 	
-	/**
-	 * Logic to save file in the specified directory or the default directory
-	 */
-	public int saveFile(Document document, String docTitle) {
-		try {
-			document.saveToFile(destination, FileFormat.Docx);
-			System.out.println("Thanks for using ResumeBuilder! Finishing program.");
-			return successfulSave;
-		} catch (Exception e) {
-			if (destination.contentEquals("")) {
-			
-				System.out.println("No file path given, file saved in default file path: \"output/resume.docx\"");
-				document.saveToFile("output/resume" + docTitle + ".docx", FileFormat.Docx);
-				return noFilePathGiven;
-			} else {
-				System.out.println("Invalid File Path, file saved in default file \"output/resume.docx\"");
-				document.saveToFile("output/resume" + docTitle + ".docx", FileFormat.Docx);
-				return defaultFile;
-			}
-			
-		}
-	}
-	 /**  Adds citizenship status and a couple other important details for Federal resume
-	  * 
-	  * @param section section to add to in document
-	  */
-	public void addFederalInfo(Section section) {
-		FederalResume federalResume = (FederalResume)resume;
+	public void addSkills(Section section, TechnicalResume techResume) {
 		
-		Paragraph citizenStatus = section.addParagraph();
-		TextRange citizenTR = citizenStatus.appendText("Citizenship: ");
-		citizenTR.getCharacterFormat().setBold(true);
-		citizenStatus.appendText(federalResume.getCitizenshipStatus());
-		
-		Paragraph federalExperience = section.addParagraph();
-		TextRange experienceTR = federalExperience.appendText("Federal Experience: ");
-		experienceTR.getCharacterFormat().setBold(true);		
-		federalExperience.appendText(federalResume.getFederalExperience());
-		
-		Paragraph clearance = section.addParagraph();
-		TextRange clearanceTR = clearance.appendText("Clearance: ");
-		clearanceTR.getCharacterFormat().setBold(true);
-		
-		clearance.appendText(federalResume.getClearance());
-		
-		
-		Paragraph purposeHeader = section.addParagraph();
-		purposeHeader.getFormat().setBeforeAutoSpacing(false);
-		purposeHeader.getFormat().setBeforeSpacing(10);
-		
-		TextRange purposeTR = purposeHeader.appendText("Summary");
-		purposeTR.getCharacterFormat().setFontSize(14);
-		purposeTR.getCharacterFormat().setBold(true);
-		Paragraph purpose = section.addParagraph();
-		purpose.appendText(federalResume.getPurposeStatement());	
-	}
-	
-	public void addReferences(Section section) {
-		FederalResume federalResume = (FederalResume)resume;
-		if(federalResume.getReferences().size() > 0) {
-		
-			Paragraph referencesHeader = section.addParagraph();
-			
-			TextRange referencesTR = referencesHeader.appendText("References");
-			referencesTR.getCharacterFormat().setBold(true);
-			referencesTR.getCharacterFormat().setFontSize(14);
-			referencesHeader.getFormat().setBeforeAutoSpacing(false);
-			referencesHeader.getFormat().setBeforeSpacing(10);
-			
-			for(References reference : federalResume.getReferences()) {
-				Paragraph newReference = section.addParagraph();
-				newReference.appendText(reference.getReferenceName()+", "+reference.getReferenceOrganization()+", "+
-				reference.getReferenceEmail() + ", " + reference.getReferencePhoneNumber());
-				newReference.getFormat().setHorizontalAlignment(HorizontalAlignment.Left);
-				newReference.getListFormat().applyBulletStyle();
-			}
-		}
 	}
 	
 	/** Adds activities to document, overloaded for each resume requiring activities
@@ -326,6 +251,115 @@ public class WordCreator {
 		}
 	}
 	
+	public void addCertifications(Section section, UndergradResearchResume undergradResume) {
+		
+	}
+	
+	public void addCertifications(Section section, TechnicalResume techResume) {
+		
+	}
+	
+	 /**  Adds citizenship status and a couple other important details for Federal resume
+	  * 
+	  * @param section section to add to in document
+	  */
+	public void addFederalInfo(Section section) {
+		FederalResume federalResume = (FederalResume)resume;
+		
+		Paragraph citizenStatus = section.addParagraph();
+		TextRange citizenTR = citizenStatus.appendText("Citizenship: ");
+		citizenTR.getCharacterFormat().setBold(true);
+		citizenStatus.appendText(federalResume.getCitizenshipStatus());
+		citizenStatus.getFormat().setBeforeAutoSpacing(false);
+		citizenStatus.getFormat().setBeforeSpacing(10);
+		
+		Paragraph federalExperience = section.addParagraph();
+		TextRange experienceTR = federalExperience.appendText("Federal Experience: ");
+		experienceTR.getCharacterFormat().setBold(true);		
+		federalExperience.appendText(federalResume.getFederalExperience());
+		
+		Paragraph clearance = section.addParagraph();
+		TextRange clearanceTR = clearance.appendText("Clearance: ");
+		clearanceTR.getCharacterFormat().setBold(true);
+		
+		clearance.appendText(federalResume.getClearance());
+		
+		
+		Paragraph purposeHeader = section.addParagraph();
+		purposeHeader.getFormat().setBeforeAutoSpacing(false);
+		purposeHeader.getFormat().setBeforeSpacing(10);
+		
+		TextRange purposeTR = purposeHeader.appendText("Summary");
+		purposeTR.getCharacterFormat().setFontSize(14);
+		purposeTR.getCharacterFormat().setBold(true);
+		Paragraph purpose = section.addParagraph();
+		purpose.appendText(federalResume.getPurposeStatement());	
+	}
+	
+	 /**
+	  * Adds references to FederalResume
+	  * @param section section to add to
+	  */
+	public void addReferences(Section section) {
+		FederalResume federalResume = (FederalResume)resume;
+		if(federalResume.getReferences().size() > 0) {
+		
+			Paragraph referencesHeader = section.addParagraph();
+			
+			TextRange referencesTR = referencesHeader.appendText("References");
+			referencesTR.getCharacterFormat().setBold(true);
+			referencesTR.getCharacterFormat().setFontSize(14);
+			referencesHeader.getFormat().setBeforeAutoSpacing(false);
+			referencesHeader.getFormat().setBeforeSpacing(10);
+			
+			for(References reference : federalResume.getReferences()) {
+				Paragraph newReference = section.addParagraph();
+				newReference.appendText(reference.getReferenceName()+", "+reference.getReferenceOrganization()+", "+
+				reference.getReferenceEmail() + ", " + reference.getReferencePhoneNumber());
+				newReference.getFormat().setHorizontalAlignment(HorizontalAlignment.Left);
+				newReference.getListFormat().applyBulletStyle();
+			}
+		}
+	}
+	
+	public void addMemberships(Section section, UndergradResearchResume undergradResume) {
+		
+	}
+	
+	public void addConferences(Section section, UndergradResearchResume undergradResume) {
+
+		
+	}
+	
+	public void addProjects(Section section, TechnicalResume techResume) {
+		
+	}
+
+	/**
+	 * Logic to save word doc to file
+	 * @param document document to be saved
+	 * @param docTitle name of the file (file path) to be saved
+	 * @return
+	 */
+	public int saveFile(Document document, String docTitle) {
+		try {
+			document.saveToFile(destination, FileFormat.Docx);
+			System.out.println("Thanks for using ResumeBuilder! Finishing program.");
+			return successfulSave;
+		} catch (Exception e) {
+			if (destination.contentEquals("")) {
+			
+				System.out.println("No file path given, file saved in default file path: \"output/resume.docx\"");
+				document.saveToFile("output/resume" + docTitle + ".docx", FileFormat.Docx);
+				return noFilePathGiven;
+			} else {
+				System.out.println("Invalid File Path, file saved in default file \"output/resume.docx\"");
+				document.saveToFile("output/resume" + docTitle + ".docx", FileFormat.Docx);
+				return defaultFile;
+			}
+			
+		}
+	}
 	
 	public int createStandardResume() {
 		StandardResume standardResume = (StandardResume)resume;
@@ -376,7 +410,7 @@ public class WordCreator {
 			docTitle = name.replaceAll("\\s","");
 		}
 		
-		
+		addJobs(section);
 		addActivities(section, undergradResearchResume);
 		addSkills(section, undergradResearchResume);
 		return saveFile(document, docTitle);
