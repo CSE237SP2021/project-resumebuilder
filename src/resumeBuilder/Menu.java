@@ -8,8 +8,6 @@ public interface Menu {
 	
 	public void displayMenu();
 	
-	public void displayExitMessage();
-	
 	public int getMenuSelection();
 	
 	public void processMenu(int resumeOption, Resume currentResume);
