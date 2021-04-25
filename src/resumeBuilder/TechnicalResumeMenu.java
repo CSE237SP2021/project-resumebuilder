@@ -210,9 +210,13 @@ public class TechnicalResumeMenu implements Menu {
 			
 			if(!newSkill.equals("done")) {
 				if(skillType.equals("software")) {
+					
 					currentTechnicalResume.addSoftwareSkill(newSkill);
+					
 				} else if(skillType.equals("programming language")) {
+					
 					currentTechnicalResume.addProgrammingLanguageSkill(newSkill);
+					
 				} else {
 					System.out.println("Error: You are attempting to add a skill with an invalid type.");
 				}

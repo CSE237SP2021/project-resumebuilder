@@ -75,4 +75,5 @@ public class TechnicalResume implements Resume {
 	public List<Certification> getCertifications(){
 		return certifications;
 	}
+	
 }
