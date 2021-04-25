@@ -11,7 +11,6 @@ public class TechnicalResume implements Resume {
 	private List<Project> projects = new ArrayList<Project>();
 	private List<String> softwareSkills = new ArrayList<String>();
 	private List<String> programmingLanguageSkills = new ArrayList<String>();
-	private List<String> softSkills = new ArrayList<String>();
 	private List<Certification> certifications = new ArrayList<Certification>();
 
 	@Override
@@ -67,14 +66,6 @@ public class TechnicalResume implements Resume {
 	
 	public List<String> getProgrammingLanguageSkills(){
 		return programmingLanguageSkills;
-	}
-
-	public void addSoftSkill(String softSkill){
-		softSkills.add(softSkill);
-	}
-	
-	public List<String> getSoftSkills(){
-		return softSkills;
 	}
 	
 	public void addCertification(Certification certification) {
