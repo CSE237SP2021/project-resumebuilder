@@ -212,17 +212,21 @@ public class UndergradResearchResumeMenu implements Menu {
 	}
 	
 	private Resume processCertification(UndergradResearchResume currentUndergradResearchResume) {
-		String newCertification="";
+		System.out.println("Please enter the title of the certification you would like to add.");
+		String certificationTitle = keyboardIn.nextLine(); 
 		
-		while(!newCertification.equals("done")) {
-			System.out.println("Please enter the next certification you would like to add. Or, type 'done' if you are finished.");
-			
-			newCertification=keyboardIn.nextLine();
-			
-			if(!newCertification.equals("done")) {
-				currentUndergradResearchResume.addCertifications(newCertification);
-			}
-		}
+		System.out.println("When did you earn "+certificationTitle+"?");
+		String dateEarned = keyboardIn.nextLine(); 
+		
+		System.out.println("Please enter the name of the host/organization for your "+certificationTitle+".");
+		String hostName = keyboardIn.nextLine(); 
+		
+		System.out.println("Please enter any relevant details for "+certificationTitle+". (Optional: Hit return to skip.)");
+		String details = keyboardIn.nextLine(); 
+		
+		Certification currentCertification = new Certification(certificationTitle, hostName, dateEarned, details);
+		
+		currentUndergradResearchResume.addCertification(currentCertification);
 		
 		System.out.println("Exiting certifications section...");
 		
