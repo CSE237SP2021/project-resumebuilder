@@ -7,7 +7,7 @@ public interface Menu {
 	public void displayExitMessage();
 	
 	public void displayMenu();
-	
+
 	public int getMenuSelection();
 	
 	public void processMenu(int resumeOption, Resume currentResume);

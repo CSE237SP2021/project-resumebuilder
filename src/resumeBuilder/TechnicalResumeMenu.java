@@ -23,10 +23,9 @@ public class TechnicalResumeMenu implements Menu {
 		System.out.println("4. Projects");
 		System.out.println("5. Software Skills");
 		System.out.println("6. Programming Language Skills");
-		System.out.println("7. Soft Skills (e.g. Communication, Public speaking, Collaboration, etc.)");
-		System.out.println("8. Certifications");
-		System.out.println("9. Save as word document");
-		System.out.println("10. Exit");
+		System.out.println("7. Certifications");
+		System.out.println("8. Save as word document");
+		System.out.println("9. Exit");
 	}
 
 	@Override
@@ -61,12 +60,10 @@ public class TechnicalResumeMenu implements Menu {
 			currentTechnicalResume=processSkills((TechnicalResume) currentTechnicalResume, "programming language");
 			resetMenu(currentTechnicalResume);
 		} else if (technicalResumeOption==7) {				
-			currentTechnicalResume=processSkills((TechnicalResume) currentTechnicalResume, "soft");
-			resetMenu(currentTechnicalResume);
-		} else if (technicalResumeOption==8) {				
 			currentTechnicalResume=processCertifications((TechnicalResume) currentTechnicalResume);
 			resetMenu(currentTechnicalResume);
-		} else if (technicalResumeOption==9) {				
+		} else if (technicalResumeOption==8) {				
+			resetMenu(currentTechnicalResume);
 			String filePath = promptForDestination();
 			WordCreator wordCreator = new WordCreator(currentTechnicalResume, filePath);
 			wordCreator.createWordDocument();
@@ -212,11 +209,13 @@ public class TechnicalResumeMenu implements Menu {
 			
 			if(!newSkill.equals("done")) {
 				if(skillType.equals("software")) {
+					
 					currentTechnicalResume.addSoftwareSkill(newSkill);
+					
 				} else if(skillType.equals("programming language")) {
+					
 					currentTechnicalResume.addProgrammingLanguageSkill(newSkill);
-				} else if(skillType.equals("soft")) {
-					currentTechnicalResume.addSoftSkill(newSkill);
+					
 				} else {
 					System.out.println("Error: You are attempting to add a skill with an invalid type.");
 				}
@@ -257,7 +256,8 @@ public class TechnicalResumeMenu implements Menu {
 
 	@Override
 	public String promptForDestination() {
-		System.out.println("What file path do you want your resume stored at? (Give absolute path.)");
+		System.out.println("What file path do you want your resume stored at? (Give absolute path. e.g. /Users/<username>/Desktop/<filename>.docx)");
+		System.out.println("Don't forget to include the file name at the end!");
 		return keyboardIn.nextLine();
 	}
 

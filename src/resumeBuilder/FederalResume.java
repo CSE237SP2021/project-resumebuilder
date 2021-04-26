@@ -13,6 +13,7 @@ public class FederalResume implements Resume{
 	private List<School> schools = new ArrayList<School>();
 	private List<Activity> activities = new ArrayList<Activity>();
 	private List<FederalJob> federalJobs = new ArrayList<FederalJob>();
+	private List<Job> jobs = new ArrayList<Job>();
 	private List<String> skills = new ArrayList<String>();
 	private List<References> references = new ArrayList<References>();
 	
@@ -86,6 +87,16 @@ public class FederalResume implements Resume{
 		return federalJobs;
 	}
 	
+	@Override
+	public void addJob(Job job) {
+		jobs.add(job);
+	}
+
+	@Override
+	public List<Job> getJobs() {
+		return jobs;
+	}
+	
 	public void addSkill(String skill) {
 		this.skills.add(skill);
 	}
@@ -102,14 +113,4 @@ public class FederalResume implements Resume{
 		return this.references;
 	}
 
-	@Override
-	public void addJob(Job job) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public List<Job> getJobs() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
