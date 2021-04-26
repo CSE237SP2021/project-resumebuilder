@@ -9,9 +9,7 @@ public class StandardResume implements Resume {
 	private List<Job> jobs = new ArrayList<Job>();
 	private List<String> skills = new ArrayList<String>();
 	
-	public StandardResume() {
-		
-	}
+	public StandardResume() {}
 	
 	@Override
 	public void setContactInfo(ContactInformation contactInfo) {
@@ -55,7 +53,7 @@ public class StandardResume implements Resume {
 		System.out.println("Contact Information");
 		System.out.println("-------------");
 		
-		this.contactInfo.toString();
+		System.out.println(this.contactInfo.toString());
 	}
 	
 	public void printSchools() {

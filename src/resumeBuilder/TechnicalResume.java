@@ -82,7 +82,7 @@ public class TechnicalResume implements Resume {
 		System.out.println("Contact Information");
 		System.out.println("-------------");
 		
-		this.contactInfo.toString();
+		System.out.println(this.contactInfo.toString());
 	}
 	
 	public void printSchools() {
