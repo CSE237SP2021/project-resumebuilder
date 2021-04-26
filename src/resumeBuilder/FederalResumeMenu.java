@@ -76,7 +76,6 @@ public class FederalResumeMenu implements Menu {
 				currentFederalResume=processReference((FederalResume) currentFederalResume);
 				resetMenu(currentFederalResume);
 		} else if (federalResumeOption==12) {
-			resetMenu(currentFederalResume);
 			String filePath = promptForDestination();
 			WordCreator wordCreator = new WordCreator(currentFederalResume, filePath);
 			wordCreator.createWordDocument();

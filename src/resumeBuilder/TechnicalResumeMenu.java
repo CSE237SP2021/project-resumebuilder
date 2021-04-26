@@ -63,7 +63,6 @@ public class TechnicalResumeMenu implements Menu {
 			currentTechnicalResume=processCertifications((TechnicalResume) currentTechnicalResume);
 			resetMenu(currentTechnicalResume);
 		} else if (technicalResumeOption==8) {				
-			resetMenu(currentTechnicalResume);
 			String filePath = promptForDestination();
 			WordCreator wordCreator = new WordCreator(currentTechnicalResume, filePath);
 			wordCreator.createWordDocument();
