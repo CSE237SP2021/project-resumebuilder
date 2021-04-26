@@ -36,8 +36,6 @@ public class WordCreator {
 	 */
 	public void addContactInfo(Section section) {
 		Paragraph name = section.addParagraph();
-		name.getFormat().setHorizontalAlignment(HorizontalAlignment.Left);
-		name.getFormat().getBorders().getBottom().setBorderType(BorderStyle.Single);	
 		TextRange tr = name.appendText(resume.getContactInfo().getName()+ "\n");
 		tr.getCharacterFormat().setBold(true);
 		tr.getCharacterFormat().setFontSize(18);
@@ -47,6 +45,8 @@ public class WordCreator {
 		otherPersonalInfo.appendText(resume.getContactInfo().getEmail());
 		otherPersonalInfo.appendText("       "+resume.getContactInfo().getPhoneNumber());
 		otherPersonalInfo.appendText("       "+resume.getContactInfo().getAddress());
+		otherPersonalInfo.getFormat().setHorizontalAlignment(HorizontalAlignment.Left);
+		otherPersonalInfo.getFormat().getBorders().getBottom().setBorderType(BorderStyle.Single);	
 	}
 	
 	/** Adds 'Education' section to word doc
@@ -63,14 +63,22 @@ public class WordCreator {
 			TextRange educationTR = educationHeader.appendText("Education");
 			educationTR.getCharacterFormat().setFontSize(14);
 			educationTR.getCharacterFormat().setBold(true);
-			for(School school: resume.getSchools()) {
+			for(int i = 0; i < resume.getSchools().size(); i ++) {
+				
+				School school = resume.getSchools().get(i);
 				//add school info, such as name/location/dates
 				Paragraph schoolName = section.addParagraph();
 				schoolName.getFormat().setLeftIndent(30);
+				if(i != 0) {
+					schoolName.getFormat().setBeforeAutoSpacing(false);
+					schoolName.getFormat().setBeforeSpacing(10);
+				}
 				TextRange tr = schoolName.appendText(school.getSchoolName()+ ", " +school.getSchoolLocation());
 				tr.getCharacterFormat().setBold(true);
 				tr.getCharacterFormat().setFontSize(12);
-				schoolName.appendText("          "+school.getStartDate()+"-"+school.getEndDate());
+				Paragraph dates = section.addParagraph();
+				dates.getFormat().setLeftIndent(30);
+				dates.appendText(school.getStartDate()+"-"+school.getEndDate());
 				
 				//add GPA and label for honors/awards
 				Paragraph gpa = section.addParagraph();
@@ -121,14 +129,24 @@ public class WordCreator {
 			}
 		
 		
-			for(Job job : resume.getJobs()) {
+			for(int i = 0; i < resume.getJobs().size(); i++) {
+				Job job = resume.getJobs().get(i);
 				//add company and job title
 				Paragraph newJob = section.addParagraph();
 				newJob.getFormat().setLeftIndent(30);
-				TextRange tr = newJob.appendText(job.getCompany() +", " +job.getJobTitle());
+				if(i !=0 ) {
+					newJob.getFormat().setBeforeAutoSpacing(false);
+					newJob.getFormat().setBeforeSpacing(10);
+				}
+				TextRange tr = newJob.appendText(job.getCompany() +", ");
 				tr.getCharacterFormat().setBold(true);
 				tr.getCharacterFormat().setFontSize(12);
-				newJob.appendText("                   " + job.getStartDate()+"-"+job.getEndDate());
+				TextRange positionTR = newJob.appendText(job.getJobTitle());
+				positionTR.getCharacterFormat().setItalic(true);
+				Paragraph dates = section.addParagraph();
+				dates.getFormat().setLeftIndent(30);
+				dates.appendText(job.getStartDate()+"-"+job.getEndDate());
+				
 				//add bullets describing job
 				for(String description: job.getDescriptions()) {
 					Paragraph newBullet = section.addParagraph();
@@ -149,14 +167,22 @@ public class WordCreator {
 			jobsHeader.getFormat().setBeforeAutoSpacing(false);
 			jobsHeader.getFormat().setBeforeSpacing(10);
 			
-			for(FederalJob federalJob : fedResume.getFederalJobs()) {
+			for(int i = 0;i <fedResume.getFederalJobs().size(); i++) {
+				FederalJob federalJob = fedResume.getFederalJobs().get(i);
+				
 				//add company and job title
 				Paragraph newJob = section.addParagraph();
 				newJob.getFormat().setLeftIndent(30);
+				if(i!= 0) {
+					newJob.getFormat().setBeforeAutoSpacing(false);
+					newJob.getFormat().setBeforeSpacing(10);
+				}
 				TextRange tr = newJob.appendText(federalJob.getCompany() +", " +federalJob.getJobTitle());
 				tr.getCharacterFormat().setBold(true);
 				tr.getCharacterFormat().setFontSize(12);
-				newJob.appendText("                   " + federalJob.getStartDate()+"-"+federalJob.getEndDate());
+				Paragraph dates = section.addParagraph();
+				dates.getFormat().setLeftIndent(30);
+				dates.appendText(federalJob.getStartDate()+"-"+federalJob.getEndDate());
 				
 				if(!federalJob.getGSLevel().equals("")) {
 					Paragraph gsLevel = section.addParagraph();
@@ -294,14 +320,22 @@ public class WordCreator {
 			activitiesTR.getCharacterFormat().setBold(true);
 			activitiesHeader.getFormat().setBeforeAutoSpacing(false);
 			activitiesHeader.getFormat().setBeforeSpacing(10);
-			for(Activity activity : fedResume.getActivities()) {
+			for(int i = 0; i< fedResume.getActivities().size();i++) {
+				Activity activity = fedResume.getActivities().get(i);
+				
 				//add organization and activity title
 				Paragraph newActivity = section.addParagraph();
 				newActivity.getFormat().setLeftIndent(30);
+				if(i!=0) {
+					newActivity.getFormat().setBeforeAutoSpacing(false);
+					newActivity.getFormat().setBeforeSpacing(10);
+				}
 				TextRange tr = newActivity.appendText(activity.getOrganization() +", " +activity.getRole());
 				tr.getCharacterFormat().setBold(true);
 				tr.getCharacterFormat().setFontSize(12);
-				newActivity.appendText("                   " + activity.getStartDate()+"-"+activity.getEndDate());
+				Paragraph dates = section.addParagraph();
+				dates.getFormat().setLeftIndent(30);
+				dates.appendText(activity.getStartDate()+"-"+activity.getEndDate());
 				//add bullets describing activity
 				for(String description: activity.getDescriptions()) {
 					Paragraph newBullet = section.addParagraph();
@@ -322,14 +356,23 @@ public class WordCreator {
 			activitiesTR.getCharacterFormat().setBold(true);
 			activitiesHeader.getFormat().setBeforeAutoSpacing(false);
 			activitiesHeader.getFormat().setBeforeSpacing(10);
-			for(Activity activity : undergradResume.getActivities()) {
+			
+			for(int i = 0; i< undergradResume.getActivities().size();i++) {
+				Activity activity = undergradResume.getActivities().get(i);
+				
 				//add organization and activity title
 				Paragraph newActivity = section.addParagraph();
 				newActivity.getFormat().setLeftIndent(30);
+				if(i!=0) {
+					newActivity.getFormat().setBeforeAutoSpacing(false);
+					newActivity.getFormat().setBeforeSpacing(10);
+				}
 				TextRange tr = newActivity.appendText(activity.getOrganization() +", " +activity.getRole());
 				tr.getCharacterFormat().setBold(true);
 				tr.getCharacterFormat().setFontSize(12);
-				newActivity.appendText("                   " + activity.getStartDate()+"-"+activity.getEndDate());
+				Paragraph dates = section.addParagraph();
+				dates.getFormat().setLeftIndent(30);
+				dates.appendText(activity.getStartDate()+"-"+activity.getEndDate());
 				//add bullets describing activity
 				for(String description: activity.getDescriptions()) {
 					Paragraph newBullet = section.addParagraph();
@@ -343,7 +386,36 @@ public class WordCreator {
 	
 	public void addCertifications(Section section, UndergradResearchResume undergradResume) {
 		if(undergradResume.getCertifications().size() > 0) {
-			//TODO: complete this when we change UndergradResearch to use Certification object
+			Paragraph certificationsHeader = section.addParagraph();
+			TextRange certificationsTR = certificationsHeader.appendText("Certifications");
+			certificationsTR.getCharacterFormat().setBold(true);
+			certificationsTR.getCharacterFormat().setFontSize(14);
+			certificationsHeader.getFormat().setBeforeAutoSpacing(false);
+			certificationsHeader.getFormat().setBeforeSpacing(10);
+			
+			for(int i = 0; i< undergradResume.getCertifications().size(); i++) {
+				Certification certification = undergradResume.getCertifications().get(i);
+				
+				Paragraph newCertification = section.addParagraph();
+				newCertification.getFormat().setLeftIndent(30);
+				if(i!=0) {
+					newCertification.getFormat().setBeforeAutoSpacing(false);
+					newCertification.getFormat().setBeforeSpacing(10);
+				}
+				TextRange certificationTitle = newCertification.appendText(certification.getCertificationTitle());
+				certificationTitle.getCharacterFormat().setBold(true);
+				certificationTitle.getCharacterFormat().setFontSize(12);
+				
+				Paragraph certificationOrg = section.addParagraph();
+				certificationOrg.getFormat().setLeftIndent(30);
+				certificationOrg.appendText(certification.getHostName()+", "+certification.getDateEarned());
+				
+				if(!certification.getDetails().equals("")) {
+					Paragraph extraDetails = section.addParagraph();
+					extraDetails.getFormat().setLeftIndent(30);
+					extraDetails.appendText(certification.getDetails());
+				}
+			}
 		}
 	}
 	
@@ -356,9 +428,15 @@ public class WordCreator {
 			certificationsHeader.getFormat().setBeforeAutoSpacing(false);
 			certificationsHeader.getFormat().setBeforeSpacing(10);
 			
-			for(Certification certification : techResume.getCertifications()) {
+			for(int i = 0; i< techResume.getCertifications().size(); i++) {
+				Certification certification = techResume.getCertifications().get(i);
+				
 				Paragraph newCertification = section.addParagraph();
 				newCertification.getFormat().setLeftIndent(30);
+				if(i!=0) {
+					newCertification.getFormat().setBeforeAutoSpacing(false);
+					newCertification.getFormat().setBeforeSpacing(10);
+				}
 				TextRange certificationTitle = newCertification.appendText(certification.getCertificationTitle());
 				certificationTitle.getCharacterFormat().setBold(true);
 				certificationTitle.getCharacterFormat().setFontSize(12);
@@ -476,7 +554,31 @@ public class WordCreator {
 	}
 	
 	public void addProjects(Section section, TechnicalResume techResume) {
-		
+		if(techResume.getProjects().size() > 0) {
+			Paragraph projectsHeader = section.addParagraph();
+			TextRange projectsTR = projectsHeader.appendText("Projects");
+			projectsTR.getCharacterFormat().setBold(true);
+			projectsTR.getCharacterFormat().setFontSize(14);
+			projectsHeader.getFormat().setBeforeAutoSpacing(false);
+			projectsHeader.getFormat().setBeforeSpacing(10);
+			
+			for(int i = 0; i< techResume.getProjects().size(); i++) {
+				Project project = techResume.getProjects().get(i);
+				
+				Paragraph newProject = section.addParagraph();
+				newProject.getFormat().setLeftIndent(30);
+				if(i!=0) {
+					newProject.getFormat().setBeforeAutoSpacing(false);
+					newProject.getFormat().setBeforeSpacing(10);
+				}
+				TextRange certificationTitle = newProject.appendText(project.getProjectName()+", " + project.getStartDate() + project.getEndDate());
+				certificationTitle.getCharacterFormat().setBold(true);
+				certificationTitle.getCharacterFormat().setFontSize(12);
+				Paragraph projectSum = section.addParagraph();
+				projectSum.getFormat().setLeftIndent(60);
+				projectSum.appendText(project.getProjectSummary());
+			}
+		}
 	}
 
 	/**
