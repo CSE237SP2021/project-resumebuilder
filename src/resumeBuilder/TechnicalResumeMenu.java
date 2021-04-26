@@ -257,7 +257,8 @@ public class TechnicalResumeMenu implements Menu {
 
 	@Override
 	public String promptForDestination() {
-		System.out.println("What file path do you want your resume stored at? (Give absolute path.)");
+		System.out.println("What file path do you want your resume stored at? (Give absolute path. e.g. /Users/<username>/Desktop/<filename>.docx)");
+		System.out.println("Don't forget to include the file name at the end!");
 		return keyboardIn.nextLine();
 	}
 
