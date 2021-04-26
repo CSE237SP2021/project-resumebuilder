@@ -46,4 +46,9 @@ public class Project {
 	public void setProjectName(String name) {
 		this.name = name;
 	}
+	
+	public String toString() {
+		return "Name: "+this.name+", Time: "+this.startDate+"-"+this.endDate+", Summary: "+this.summary;
+
+	}
 }

@@ -30,4 +30,8 @@ public class ContactInformation {
 	public String getAddress() {
 		return this.address;
 	}
+	
+	public String toString() {
+		return "Name: "+this.name+", Email: "+this.email+", Phone #: "+this.phone_number+", Address: "+this.address;
+	}
 }

@@ -25,8 +25,9 @@ public class UndergradResearchResumeMenu implements Menu {
 		System.out.println("6. Certifications");
 		System.out.println("7. Organizational Memberships");
 		System.out.println("8. Conferences Attended/Presented");
-		System.out.println("9. Save as word document");
-		System.out.println("10. Exit");
+		System.out.println("9. View current content");
+		System.out.println("10. Save as word document");
+		System.out.println("11. Exit");
 	}
 
 	@Override
@@ -42,7 +43,6 @@ public class UndergradResearchResumeMenu implements Menu {
 
 	@Override
 	public void processMenu(int undergradResearchResumeOption, Resume currentUndergradResearchResume) {
-		// TODO Auto-generated method stub
 		if(undergradResearchResumeOption==1) {
 			currentUndergradResearchResume=processContactInformation(currentUndergradResearchResume);
 			resetMenu(currentUndergradResearchResume);
@@ -67,7 +67,10 @@ public class UndergradResearchResumeMenu implements Menu {
 		} else if (undergradResearchResumeOption==8) {				
 			currentUndergradResearchResume=processConference((UndergradResearchResume) currentUndergradResearchResume);
 			resetMenu(currentUndergradResearchResume);
-		}  else if (undergradResearchResumeOption==9) {
+		}  else if (undergradResearchResumeOption==9) {	
+			((UndergradResearchResume) currentUndergradResearchResume).printUndergradResearchResume();
+			resetMenu(currentUndergradResearchResume);
+		} else if (undergradResearchResumeOption==10) {
 			System.out.println("Cannot create Word document for this resume template yet.");
 //			String filePath = promptForDestination();
 //			WordCreator wordCreator = new WordCreator((StandardResume) currentStandardResume, filePath);

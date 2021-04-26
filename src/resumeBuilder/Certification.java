@@ -48,4 +48,9 @@ public class Certification {
 	public void setDetails(String details) {
 		this.details = details;
 	}
+	
+	public String toString() {
+		return "Title: "+this.title+", Host Organization: "+this.hostName+", Earned: "+this.dateEarned+", Details: "+this.details;
+
+	}
 }

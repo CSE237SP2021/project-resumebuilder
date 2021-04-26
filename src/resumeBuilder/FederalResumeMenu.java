@@ -30,8 +30,9 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("9. Volunteer Work and Community Involvement");
 		System.out.println("10. Skills");
 		System.out.println("11. References");
-		System.out.println("12. Save as word document");
-		System.out.println("13. Exit");
+		System.out.println("12. View current content");
+		System.out.println("13. Save as word document");
+		System.out.println("14. Exit");
 		//Options from: https://www.sec.gov/jobs/sample-resume/sample-resume.pdf		
 	}
 
@@ -75,7 +76,10 @@ public class FederalResumeMenu implements Menu {
 		} else if (federalResumeOption==11) {				
 				currentFederalResume=processReference((FederalResume) currentFederalResume);
 				resetMenu(currentFederalResume);
-		} else if (federalResumeOption==12) {
+		} else if (federalResumeOption==12){
+			((FederalResume) currentFederalResume).printFederalResume();
+			resetMenu(currentFederalResume);
+		} else if (federalResumeOption==13) {
 			System.out.println("Word Doc creation unsupported for our federal resume template.");
 			resetMenu(currentFederalResume);
 //			String filePath = promptForDestination();

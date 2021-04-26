@@ -79,4 +79,9 @@ public class FederalJob {
 	public List<String> getDescriptions() {
 		return this.descriptions;
 	}
+	
+	public String toString() {
+		return "Company: "+this.company+", Title: "+this.jobTitle+", Time: "+this.startDate+"-"+this.endDate+", GS Level: "+this.GSLevel+", Salary: "+this.salary+", Descriptions: "+this.descriptions.toString();
+
+	}
 }

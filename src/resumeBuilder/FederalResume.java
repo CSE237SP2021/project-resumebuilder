@@ -5,11 +5,11 @@ import java.util.List;
 
 public class FederalResume implements Resume{
 	
-	private ContactInformation contactInfo;
-	private String citizenshipStatus;
-	private String federalExperience;
-	private String clearance;
-	private String purposeStatement;
+	private ContactInformation contactInfo = new ContactInformation();
+	private String citizenshipStatus = "";
+	private String federalExperience = "";
+	private String clearance = "";
+	private String purposeStatement = "";
 	private List<School> schools = new ArrayList<School>();
 	private List<Activity> activities = new ArrayList<Activity>();
 	private List<FederalJob> federalJobs = new ArrayList<FederalJob>();
@@ -75,7 +75,7 @@ public class FederalResume implements Resume{
 		this.activities.add(activity);
 	}
 	
-	public List<Activity> getActivity() {
+	public List<Activity> getActivities() {
 		return this.activities;
 	}
 
@@ -113,4 +113,130 @@ public class FederalResume implements Resume{
 		return this.references;
 	}
 
+	public void printContactInfo() {
+		System.out.println("Contact Information");
+		System.out.println("-------------");
+		
+		this.contactInfo.toString();
+	}
+	
+	public void printCitizenshipStatus() {
+		System.out.println("Citizenship Status");
+		System.out.println("-------------");
+		System.out.print(this.citizenshipStatus);
+	}
+	
+	public void printFederalExperience() {
+		System.out.println("Government or Military Experience");
+		System.out.println("-------------");
+		System.out.print(this.federalExperience);
+	}
+	
+	public void printClearance() {
+		System.out.println("Clearance");
+		System.out.println("-------------");
+		System.out.print(this.clearance);
+	}
+	
+	public void printPurposeStatement() {
+		System.out.println("Purpose Statement");
+		System.out.println("-------------");
+		System.out.print(this.purposeStatement);
+	}
+	
+	public void printSchools() {
+		System.out.println("Academic History");
+		System.out.println("-------------");
+		
+		for(School currentSchool : this.getSchools()) {
+			System.out.println("* "+currentSchool.toString());
+		}
+	}
+	
+	public void printActivities() {
+		System.out.println("Volunteer Work and Community Involvement");
+		System.out.println("-------------");
+		
+		for(Activity currentActivity : this.getActivities()) {
+			System.out.println("* "+currentActivity.toString());
+		}
+	}
+	
+	public void printJobs() {
+		System.out.println("Regular Work Experience");
+		System.out.println("-------------");
+		
+		for(Job currentJob : this.getJobs()) {
+			System.out.println("* "+currentJob.toString());
+		}
+	}
+	
+	public void printFederalJobs() {
+		System.out.println("Federal Work Experience");
+		System.out.println("-------------");
+		
+		for(FederalJob currentFederalJob : this.getFederalJobs()) {
+			System.out.println("* "+currentFederalJob.toString());
+		}
+	}
+	
+	public void printSkills() {
+		System.out.println("Skills");
+		System.out.println("-------------");
+		
+		for(String currentSkill : this.getSkills()) {
+			System.out.println("* "+currentSkill);
+		}
+	}
+	
+	public void printReferences() {
+		System.out.println("References");
+		System.out.println("-------------");
+		
+		for(References currentReference : this.getReferences()) {
+			System.out.println("* "+currentReference.toString());
+		}
+	}
+	
+	public void printFederalResume() {
+		System.out.println();
+		System.out.println("YOUR CURRENT FEDERAL RESUME CONTENT: ");
+		
+		System.out.println();
+		this.printContactInfo();
+		
+		System.out.println();
+		this.printCitizenshipStatus();
+		
+		System.out.println();
+		this.printFederalExperience();
+		
+		System.out.println();
+		this.printClearance();
+		
+		System.out.println();
+		this.printPurposeStatement();
+		
+		System.out.println();
+		this.printSchools();
+		
+		System.out.println();
+		this.printActivities();
+		
+		System.out.println();
+		this.printJobs();
+		
+		System.out.println();
+		this.printFederalJobs();
+		
+		System.out.println();
+		this.printSkills();
+		
+		System.out.println();
+		this.printReferences();
+		
+		System.out.println();
+		System.out.println("END OF CONTENT");
+		System.out.println();
+	}
 }

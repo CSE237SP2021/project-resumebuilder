@@ -23,8 +23,9 @@ public class StandardResumeMenu implements Menu{
 		System.out.println("2. Academic History");
 		System.out.println("3. Work Experience");
 		System.out.println("4. Skills");
-		System.out.println("5. Save as word document");
-		System.out.println("6. Exit");
+		System.out.println("5. View current content");
+		System.out.println("6. Save as word document");
+		System.out.println("7. Exit");
 	}
 
 	@Override
@@ -47,6 +48,9 @@ public class StandardResumeMenu implements Menu{
 			currentStandardResume=processSkill((StandardResume) currentStandardResume);
 			resetMenu(currentStandardResume);
 		} else if (standardResumeOption==5) {
+			((StandardResume) currentStandardResume).printStandardResume();
+			resetMenu(currentStandardResume);
+		} else if (standardResumeOption==6) {
 			String filePath = promptForDestination();
 			WordCreator wordCreator = new WordCreator((StandardResume) currentStandardResume, filePath);
 			wordCreator.createWordDocument();

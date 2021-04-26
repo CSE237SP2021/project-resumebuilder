@@ -24,8 +24,9 @@ public class TechnicalResumeMenu implements Menu {
 		System.out.println("5. Software Skills");
 		System.out.println("6. Programming Language Skills");
 		System.out.println("7. Certifications");
-		System.out.println("8. Save as word document");
-		System.out.println("9. Exit");
+		System.out.println("8. View current content");
+		System.out.println("9. Save as word document");
+		System.out.println("10. Exit");
 	}
 
 	@Override
@@ -62,7 +63,10 @@ public class TechnicalResumeMenu implements Menu {
 		} else if (technicalResumeOption==7) {				
 			currentTechnicalResume=processCertifications((TechnicalResume) currentTechnicalResume);
 			resetMenu(currentTechnicalResume);
-		} else if (technicalResumeOption==8) {				
+		} else if(technicalResumeOption==8) {
+			((TechnicalResume) currentTechnicalResume).printTechnicalResume();
+			resetMenu(currentTechnicalResume);
+		} else if (technicalResumeOption==9) {				
 			System.out.println("Word Doc creation currently unsupported for our technical resume template.");
 			resetMenu(currentTechnicalResume);
 //			String filePath = promptForDestination();
