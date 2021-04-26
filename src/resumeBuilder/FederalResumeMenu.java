@@ -18,7 +18,7 @@ public class FederalResumeMenu implements Menu {
 
 	@Override
 	public void displayMenu() {
-		System.out.println("Please select the information you would like to add next.");
+		System.out.println("Please select the information you would like to add/edit next.");
 		System.out.println("1. Contact Information");
 		System.out.println("2. Academic History");
 		System.out.println("3. Federal Work Experience");
@@ -93,6 +93,8 @@ public class FederalResumeMenu implements Menu {
 
 	@Override
 	public Resume processContactInformation(Resume currentFederalResume) {
+		System.out.println("If you have already entered contact information, what you are entering now will replace that.");
+		System.out.println();
 		
 		System.out.println("Please enter your full name.");
 		String firstName = keyboardIn.nextLine(); 
@@ -194,6 +196,8 @@ public class FederalResumeMenu implements Menu {
 	}
 	
 	private FederalResume processCitizenshipStatus(FederalResume currentFederalResume) {
+		System.out.println("If you have already entered your citizenship status, what you are entering now will replace that.");
+		System.out.println();
 		
 		System.out.println("Please enter your citizenship status (e.g., US Citizen, Work Visa.");
 		String citizenshipStatus = keyboardIn.nextLine(); 
@@ -204,6 +208,8 @@ public class FederalResumeMenu implements Menu {
 	}
 	
 	private FederalResume processFederalExperience(FederalResume currentFederalResume) {
+		System.out.println("If you have already entered your government experience, what you are entering now will replace that.");
+		System.out.println();
 		
 		System.out.println("Please enter your government experience (e.g., military, federal, or state.");
 		String federalExperience = keyboardIn.nextLine(); 
@@ -214,6 +220,8 @@ public class FederalResumeMenu implements Menu {
 	}
 
 	private FederalResume processClearance(FederalResume currentFederalResume) {
+		System.out.println("If you have already entered your clearance level, what you are entering now will replace that.");
+		System.out.println();
 		
 		System.out.println("Please enter your clearance level (e.g., Top Secret, Secret). If you don't have a clearance, just press 'Enter.'");
 		String clearance = keyboardIn.nextLine(); 
@@ -224,6 +232,8 @@ public class FederalResumeMenu implements Menu {
 	}
 	
 	private FederalResume processPurposeStatement(FederalResume currentFederalResume) {
+		System.out.println("If you have already entered your purpose statement, what you are entering now will replace that.");
+		System.out.println();
 		
 		System.out.println("Please enter a purpose statement about the roles you're looking for.");
 		String purposeStatement = keyboardIn.nextLine(); 
