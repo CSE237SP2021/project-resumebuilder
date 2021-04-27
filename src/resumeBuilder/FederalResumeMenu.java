@@ -47,13 +47,13 @@ public class FederalResumeMenu implements Menu {
 			currentFederalResume=processContactInformation(currentFederalResume);
 			resetMenu(currentFederalResume);
 		} else if (federalResumeOption==2) {
-			currentFederalResume=processAcademicInformation(currentFederalResume);
+			currentFederalResume=addOrRemoveSchool(currentFederalResume);
 			resetMenu(currentFederalResume);
 		} else if (federalResumeOption==3) {
-			currentFederalResume=processFederalWorkExperience((FederalResume) currentFederalResume);
+			currentFederalResume=addOrRemoveFederalJob(currentFederalResume);
 			resetMenu(currentFederalResume);
 		} else if (federalResumeOption==4) {
-			currentFederalResume=processWorkExperience(currentFederalResume);
+			currentFederalResume=addOrRemoveJob(currentFederalResume);
 			resetMenu(currentFederalResume);
 		} else if (federalResumeOption==5) {				
 			currentFederalResume=processCitizenshipStatus((FederalResume) currentFederalResume);
@@ -68,13 +68,13 @@ public class FederalResumeMenu implements Menu {
 			currentFederalResume=processPurposeStatement((FederalResume) currentFederalResume);
 			resetMenu(currentFederalResume);
 		} else if (federalResumeOption==9) {				
-			currentFederalResume=processVolunteerExperience((FederalResume) currentFederalResume);
+			currentFederalResume=addOrRemoveVolunteerExperience(currentFederalResume);
 			resetMenu(currentFederalResume);
 		} else if (federalResumeOption==10) {				
-			currentFederalResume=processSkill((FederalResume) currentFederalResume);
+			currentFederalResume=addOrRemoveSkill((FederalResume) currentFederalResume);
 			resetMenu(currentFederalResume);
 		} else if (federalResumeOption==11) {				
-				currentFederalResume=processReference((FederalResume) currentFederalResume);
+				currentFederalResume=addOrRemoveReference(currentFederalResume);
 				resetMenu(currentFederalResume);
 		} else if (federalResumeOption==12){
 			((FederalResume) currentFederalResume).printFederalResume();
@@ -391,6 +391,196 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("Exiting academic honors/awards section...");
 		
 		return currentSchool;
+	}
+	
+	public void displayAddOrRemove() {
+		System.out.println("Please select what you would like to do.");
+		System.out.println("1. Add an entry.");
+		System.out.println("2. Remove an entry.");
+		System.out.println("3. Erase all entries.");
+		System.out.println("4. Return");
+	}
+	
+	public int promptForAddOrRemove() {
+		displayAddOrRemove();
+		
+		int selection = getMenuSelection();
+		
+		while(selection>4 || selection<1) {
+			System.out.println("That is not a valid selection. Please try again.");
+			displayAddOrRemove();
+			selection = getMenuSelection();
+		}
+		
+		return selection;
+	}
+	
+	public Resume addOrRemoveSchool(Resume currentFederalResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentFederalResume=processAcademicInformation(currentFederalResume);	
+		} else if(selection == 2) {
+			currentFederalResume=processSchoolRemoval(currentFederalResume);
+		} else if(selection == 3) {
+			((FederalResume) currentFederalResume).eraseSchools();
+			System.out.println("All academic history has been erased.");
+		}
+		
+		return currentFederalResume;
+	}
+	
+	public Resume processSchoolRemoval(Resume currentFederalResume) {
+		System.out.println("Please enter the name of the school you would like to delete (exactly as entered previously.");
+		String schoolName = keyboardIn.nextLine();
+		if(((FederalResume) currentFederalResume).removeSchool(schoolName)) {
+			System.out.println(schoolName+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find school with that name.");
+		}
+		
+		return currentFederalResume;
+	}
+	
+	public Resume addOrRemoveFederalJob(Resume currentFederalResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentFederalResume=processFederalWorkExperience((FederalResume) currentFederalResume);
+		} else if(selection == 2) {
+			currentFederalResume=processFederalJobRemoval(currentFederalResume);
+		} else if(selection == 3) {
+			((FederalResume) currentFederalResume).eraseFederalJobs();
+			System.out.println("All federal work experience has been erased.");
+		}
+		
+		return currentFederalResume;
+	}
+	
+	public Resume processFederalJobRemoval(Resume currentFederalResume) {
+		System.out.println("Please enter the company name of the federal job you would like to delete (exactly as entered previously.");
+		String companyName = keyboardIn.nextLine();
+		if(((FederalResume) currentFederalResume).removeFederalJob(companyName)) {
+			System.out.println(companyName+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find federal job with that company name.");
+		}
+		
+		return currentFederalResume;
+	}
+	
+	public Resume addOrRemoveJob(Resume currentFederalResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentFederalResume=processWorkExperience(currentFederalResume);
+		} else if(selection == 2) {
+			currentFederalResume=processJobRemoval(currentFederalResume);
+		} else if(selection == 3) {
+			((FederalResume) currentFederalResume).eraseJobs();
+			System.out.println("All regular work experience has been erased.");
+		}
+		
+		return currentFederalResume;
+	}
+	
+	public Resume processJobRemoval(Resume currentFederalResume) {
+		System.out.println("Please enter the company name of the job you would like to delete (exactly as entered previously.");
+		String companyName = keyboardIn.nextLine();
+		if(((FederalResume) currentFederalResume).removeJob(companyName)) {
+			System.out.println(companyName+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find job with that company name.");
+		}
+		
+		return currentFederalResume;
+	}
+	
+	public Resume addOrRemoveVolunteerExperience(Resume currentFederalResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentFederalResume=processVolunteerExperience((FederalResume) currentFederalResume);
+		} else if(selection == 2) {
+			currentFederalResume=processVolunteerExperienceRemoval(currentFederalResume);
+		} else if(selection == 3) {
+			((FederalResume) currentFederalResume).eraseActivities();
+			System.out.println("All activities have been erased.");
+		}
+		
+		return currentFederalResume;
+	}
+	
+	public Resume processVolunteerExperienceRemoval(Resume currentFederalResume) {
+		System.out.println("Please enter the organization name of the volunteer experience you would like to delete (exactly as entered previously.");
+		String organizationName = keyboardIn.nextLine();
+		if(((FederalResume) currentFederalResume).removeActivity(organizationName)) {
+			System.out.println(organizationName+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find volunteer experience with that organization name.");
+		}
+		
+		return currentFederalResume;
+	}
+	
+	public Resume addOrRemoveSkill(Resume currentFederalResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentFederalResume=processSkill((FederalResume) currentFederalResume);
+		} else if(selection == 2) {
+			currentFederalResume=processSkillRemoval(currentFederalResume);
+		} else if(selection == 3) {
+			((FederalResume) currentFederalResume).eraseSkills();
+			System.out.println("All skills been erased.");
+		}
+		
+		return currentFederalResume;
+	}
+	
+	public Resume processSkillRemoval(Resume currentFederalResume) {
+		System.out.println("Please enter the skill you would like to delete (exactly as entered previously.");
+		String skill = keyboardIn.nextLine();
+		if(((FederalResume) currentFederalResume).removeSkill(skill)) {
+			System.out.println(skill+" has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find that skill.");
+		}
+		
+		return currentFederalResume;
+	}
+	
+	public Resume addOrRemoveReference(Resume currentFederalResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentFederalResume=processReference((FederalResume) currentFederalResume);	
+		} else if(selection == 2) {
+			currentFederalResume=processReferenceRemoval(currentFederalResume);
+		} else if(selection == 3) {
+			((FederalResume) currentFederalResume).eraseReferences();
+			System.out.println("All references have been erased.");
+		}
+		
+		return currentFederalResume;
+	}
+	
+	public Resume processReferenceRemoval(Resume currentFederalResume) {
+		System.out.println("Please enter the name of the reference you would like to delete (exactly as entered previously.");
+		String referenceName = keyboardIn.nextLine();
+		if(((FederalResume) currentFederalResume).removeReference(referenceName)) {
+			System.out.println(referenceName+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find reference with that name.");
+		}
+		
+		return currentFederalResume;
 	}
 
 	@Override

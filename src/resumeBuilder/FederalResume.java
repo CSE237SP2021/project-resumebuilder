@@ -68,7 +68,22 @@ public class FederalResume implements Resume{
 
 	@Override
 	public List<School> getSchools() {
-		return schools;
+		return this.schools;
+	}
+	
+	public boolean removeSchool(String schoolName) {
+		for(School currentSchool : this.getSchools()) {
+			String currentSchoolName = currentSchool.getSchoolName();
+			if(currentSchoolName.equals(schoolName)) {
+				this.schools.remove(currentSchool);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void eraseSchools() {
+		this.schools = new ArrayList<School>();
 	}
 	
 	public void addActivity(Activity activity) {
@@ -78,23 +93,68 @@ public class FederalResume implements Resume{
 	public List<Activity> getActivities() {
 		return this.activities;
 	}
+	
+	public boolean removeActivity(String organization) {
+		for(Activity currentActivity : this.getActivities()) {
+			String currentOrganization = currentActivity.getOrganization();
+			if(currentOrganization.equals(organization)) {
+				this.activities.remove(currentActivity);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void eraseActivities() {
+		this.activities = new ArrayList<Activity>();
+	}
 
 	public void addFederalJob(FederalJob federalJob) {
-		federalJobs.add(federalJob);		
+		this.federalJobs.add(federalJob);		
 	}
 
 	public List<FederalJob> getFederalJobs() {
-		return federalJobs;
+		return this.federalJobs;
+	}
+	
+	public boolean removeFederalJob(String companyName) {
+		for(FederalJob currentJob : this.getFederalJobs()) {
+			String currentCompanyName = currentJob.getCompany();
+			if(currentCompanyName.equals(companyName)) {
+				this.federalJobs.remove(currentJob);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void eraseFederalJobs() {
+		this.federalJobs = new ArrayList<FederalJob>();
 	}
 	
 	@Override
 	public void addJob(Job job) {
-		jobs.add(job);
+		this.jobs.add(job);
 	}
 
 	@Override
 	public List<Job> getJobs() {
-		return jobs;
+		return this.jobs;
+	}
+	
+	public boolean removeJob(String companyName) {
+		for(Job currentJob : this.getJobs()) {
+			String currentCompanyName = currentJob.getCompany();
+			if(currentCompanyName.equals(companyName)) {
+				this.jobs.remove(currentJob);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void eraseJobs() {
+		this.jobs = new ArrayList<Job>();
 	}
 	
 	public void addSkill(String skill) {
@@ -105,12 +165,35 @@ public class FederalResume implements Resume{
 		return this.skills;
 	}
 	
+	public boolean removeSkill(String skill) {
+		return this.skills.remove(skill);
+	}
+	
+	public void eraseSkills() {
+		this.skills = new ArrayList<String>();
+	}
+	
 	public void addReference(References reference) {
 		this.references.add(reference);
 	}
 
 	public List<References> getReferences() {
 		return this.references;
+	}
+	
+	public boolean removeReference(String name) {
+		for(References currentReference : this.getReferences()) {
+			String currentName = currentReference.getReferenceName();
+			if(currentName.equals(name)) {
+				this.references.remove(currentReference);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void eraseReferences() {
+		this.references = new ArrayList<References>();
 	}
 
 	public void printContactInfo() {
