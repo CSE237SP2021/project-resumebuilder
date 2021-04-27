@@ -80,11 +80,9 @@ public class FederalResumeMenu implements Menu {
 			((FederalResume) currentFederalResume).printFederalResume();
 			resetMenu(currentFederalResume);
 		} else if (federalResumeOption==13) {
-			System.out.println("Word Doc creation unsupported for our federal resume template.");
-			resetMenu(currentFederalResume);
-//			String filePath = promptForDestination();
-//			WordCreator wordCreator = new WordCreator(currentFederalResume, filePath);
-//			wordCreator.createWordDocument();
+			String filePath = promptForDestination();
+			WordCreator wordCreator = new WordCreator(currentFederalResume, filePath);
+			wordCreator.createWordDocument();
 		} else {
 			displayExitMessage();
 			return;
