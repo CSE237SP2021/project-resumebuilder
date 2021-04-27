@@ -30,6 +30,21 @@ public class StandardResume implements Resume {
 	public List<School> getSchools() {
 		return schools;
 	}
+	
+	public boolean removeSchool(String schoolName) {
+		for(School currentSchool : this.getSchools()) {
+			String currentSchoolName = currentSchool.getSchoolName();
+			if(currentSchoolName.equals(schoolName)) {
+				this.schools.remove(currentSchool);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void eraseSchools() {
+		schools = new ArrayList<School>();
+	}
 
 	@Override
 	public void addJob(Job job) {
@@ -41,12 +56,35 @@ public class StandardResume implements Resume {
 		return jobs;
 	}
 	
+	public boolean removeJob(String companyName) {
+		for(Job currentJob : this.getJobs()) {
+			String currentCompanyName = currentJob.getCompany();
+			if(currentCompanyName.equals(companyName)) {
+				this.jobs.remove(currentJob);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void eraseJobs() {
+		jobs = new ArrayList<Job>();
+	}
+	
 	public void addSkill(String skill) {
 		skills.add(skill);
 	}
 	
 	public List<String> getSkills() {
 		return skills;
+	}
+	
+	public boolean removeSkill(String skill) {
+		return this.skills.remove(skill);
+	}
+	
+	public void eraseSkills() {
+		skills = new ArrayList<String>();
 	}
 	
 	public void printContactInfo() {
