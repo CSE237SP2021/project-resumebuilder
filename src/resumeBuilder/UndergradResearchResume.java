@@ -34,6 +34,21 @@ public class UndergradResearchResume implements Resume {
 	public List<School> getSchools() {
 		return schools;
 	}
+	
+	public boolean removeSchool(String schoolName) {
+		for(School currentSchool : this.getSchools()) {
+			String currentSchoolName = currentSchool.getSchoolName();
+			if(currentSchoolName.equals(schoolName)) {
+				this.schools.remove(currentSchool);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void eraseSchools() {
+		schools = new ArrayList<School>();
+	}
 
 	@Override
 	public void addJob(Job job) {
@@ -45,12 +60,42 @@ public class UndergradResearchResume implements Resume {
 		return jobs;
 	}
 	
+	public boolean removeJob(String companyName) {
+		for(Job currentJob : this.getJobs()) {
+			String currentCompanyName = currentJob.getCompany();
+			if(currentCompanyName.equals(companyName)) {
+				this.jobs.remove(currentJob);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void eraseJobs() {
+		jobs = new ArrayList<Job>();
+	}
+	
 	public void addActivity(Activity activity) {
 		activities.add(activity);		
 	}
 
 	public List<Activity> getActivities() {
 		return activities;
+	}
+	
+	public boolean removeActivity(String organization) {
+		for(Activity currentActivity : this.getActivities()) {
+			String currentOrganization = currentActivity.getOrganization();
+			if(currentOrganization.equals(organization)) {
+				this.activities.remove(currentActivity);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void eraseActivities() {
+		activities = new ArrayList<Activity>();
 	}
 	
 	public void addSkill(String skill) {
@@ -61,12 +106,35 @@ public class UndergradResearchResume implements Resume {
 		return this.skills;
 	}
 	
+	public boolean removeSkill(String skill) {
+		return this.skills.remove(skill);
+	}
+	
+	public void eraseSkills() {
+		skills = new ArrayList<String>();
+	}
+	
 	public void addCertification(Certification certification) {
 		this.certifications.add(certification);
 	}
 	
 	public List<Certification> getCertifications(){
 		return this.certifications;
+	}
+	
+	public boolean removeCertification(String certificationTitle) {
+		for(Certification currentCertification : this.getCertifications()) {
+			String currentCertTitle = currentCertification.getCertificationTitle();
+			if(currentCertTitle.equals(certificationTitle)) {
+				this.certifications.remove(currentCertification);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void eraseCertifications() {
+		this.certifications = new ArrayList<Certification>();
 	}
 	
 	public void addMemberships(String membership) {
@@ -77,12 +145,28 @@ public class UndergradResearchResume implements Resume {
 		return this.memberships;
 	}
 	
+	public boolean removeMembership(String membership) {
+		return this.memberships.remove(membership);
+	}
+	
+	public void eraseMemberships() {
+		this.memberships = new ArrayList<String>();
+	}
+	
 	public void addConferences(String conference) {
 		this.conferences.add(conference);
 	}
 	
 	public List<String> getConferences() {
 		return this.conferences;
+	}
+	
+	public boolean removeConference(String conference) {
+		return this.conferences.remove(conference);
+	}
+	
+	public void eraseConferences() {
+		this.conferences = new ArrayList<String>();
 	}
 	
 	public void printContactInfo() {
