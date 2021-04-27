@@ -46,22 +46,22 @@ public class TechnicalResumeMenu implements Menu {
 			currentTechnicalResume=processContactInformation(currentTechnicalResume);
 			resetMenu(currentTechnicalResume);
 		} else if (technicalResumeOption==2) {
-			currentTechnicalResume=processAcademicInformation(currentTechnicalResume);
+			currentTechnicalResume=addOrRemoveSchool(currentTechnicalResume);
 			resetMenu(currentTechnicalResume);
 		} else if (technicalResumeOption==3) {
-			currentTechnicalResume=processWorkExperience(currentTechnicalResume);
+			currentTechnicalResume=addOrRemoveJob(currentTechnicalResume);
 			resetMenu(currentTechnicalResume);
 		} else if (technicalResumeOption==4) {				
-			currentTechnicalResume=processProjectHistory((TechnicalResume) currentTechnicalResume);
+			currentTechnicalResume=addOrRemoveProject(currentTechnicalResume);
 			resetMenu(currentTechnicalResume);
 		} else if (technicalResumeOption==5) {				
-			currentTechnicalResume=processSkills((TechnicalResume) currentTechnicalResume, "software");
+			currentTechnicalResume=addOrRemoveSoftwareSkill(currentTechnicalResume);
 			resetMenu(currentTechnicalResume);
 		} else if (technicalResumeOption==6) {				
-			currentTechnicalResume=processSkills((TechnicalResume) currentTechnicalResume, "programming language");
+			currentTechnicalResume=addOrRemoveProgrammingLanguageSkill(currentTechnicalResume);
 			resetMenu(currentTechnicalResume);
 		} else if (technicalResumeOption==7) {				
-			currentTechnicalResume=processCertifications((TechnicalResume) currentTechnicalResume);
+			currentTechnicalResume=addOrRemoveCertification(currentTechnicalResume);
 			resetMenu(currentTechnicalResume);
 		} else if(technicalResumeOption==8) {
 			((TechnicalResume) currentTechnicalResume).printTechnicalResume();
@@ -251,6 +251,196 @@ public class TechnicalResumeMenu implements Menu {
 		Certification currentCertification = new Certification(certificationTitle, hostName, dateEarned, details);
 		
 		currentTechnicalResume.addCertification(currentCertification);
+		
+		return currentTechnicalResume;
+	}
+	
+	public void displayAddOrRemove() {
+		System.out.println("Please select what you would like to do.");
+		System.out.println("1. Add an entry.");
+		System.out.println("2. Remove an entry.");
+		System.out.println("3. Erase all entries.");
+		System.out.println("4. Return");
+	}
+	
+	public int promptForAddOrRemove() {
+		displayAddOrRemove();
+		
+		int selection = getMenuSelection();
+		
+		while(selection>4 || selection<1) {
+			System.out.println("That is not a valid selection. Please try again.");
+			displayAddOrRemove();
+			selection = getMenuSelection();
+		}
+		
+		return selection;
+	}
+	
+	public Resume addOrRemoveSchool(Resume currentTechnicalResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentTechnicalResume=processAcademicInformation(currentTechnicalResume);	
+		} else if(selection == 2) {
+			currentTechnicalResume=processSchoolRemoval(currentTechnicalResume);
+		} else if(selection == 3) {
+			((TechnicalResume) currentTechnicalResume).eraseSchools();
+			System.out.println("All academic history has been erased.");
+		}
+		
+		return currentTechnicalResume;
+	}
+	
+	public Resume processSchoolRemoval(Resume currentTechnicalResume) {
+		System.out.println("Please enter the name of the school you would like to delete (exactly as entered previously.");
+		String schoolName = keyboardIn.nextLine();
+		if(((TechnicalResume) currentTechnicalResume).removeSchool(schoolName)) {
+			System.out.println(schoolName+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find school with that name.");
+		}
+		
+		return currentTechnicalResume;
+	}
+	
+	public Resume addOrRemoveJob(Resume currentTechnicalResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentTechnicalResume=processWorkExperience(currentTechnicalResume);	
+		} else if(selection == 2) {
+			currentTechnicalResume=processJobRemoval(currentTechnicalResume);
+		} else if(selection == 3) {
+			((TechnicalResume) currentTechnicalResume).eraseJobs();
+			System.out.println("All work experience has been erased.");
+		}
+		
+		return currentTechnicalResume;
+	}
+	
+	public Resume processJobRemoval(Resume currentTechnicalResume) {
+		System.out.println("Please enter the company name of the job you would like to delete (exactly as entered previously.");
+		String companyName = keyboardIn.nextLine();
+		if(((StandardResume) currentTechnicalResume).removeJob(companyName)) {
+			System.out.println(companyName+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find job with that company name.");
+		}
+		
+		return currentTechnicalResume;
+	}
+	
+	public Resume addOrRemoveProject(Resume currentTechnicalResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentTechnicalResume=processProjectHistory((TechnicalResume) currentTechnicalResume);	
+		} else if(selection == 2) {
+			currentTechnicalResume=processProjectRemoval(currentTechnicalResume);
+		} else if(selection == 3) {
+			((TechnicalResume) currentTechnicalResume).eraseProjects();
+			System.out.println("All projects have been erased.");
+		}
+		
+		return currentTechnicalResume;
+	}
+	
+	public Resume processProjectRemoval(Resume currentTechnicalResume) {
+		System.out.println("Please enter the name of the project you would like to delete (exactly as entered previously.");
+		String projectName = keyboardIn.nextLine();
+		if(((TechnicalResume) currentTechnicalResume).removeProject(projectName)) {
+			System.out.println(projectName+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find project with that name.");
+		}
+		
+		return currentTechnicalResume;
+	}
+	
+	public Resume addOrRemoveSoftwareSkill(Resume currentTechnicalResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentTechnicalResume=processSkills((TechnicalResume) currentTechnicalResume, "software");
+		} else if(selection == 2) {
+			currentTechnicalResume=processSoftwareSkillRemoval(currentTechnicalResume);
+		} else if(selection == 3) {
+			((TechnicalResume) currentTechnicalResume).eraseSoftwareSkills();
+			System.out.println("All skills been erased.");
+		}
+		
+		return currentTechnicalResume;
+	}
+	
+	public Resume processSoftwareSkillRemoval(Resume currentTechnicalResume) {
+		System.out.println("Please enter the skill you would like to delete (exactly as entered previously.");
+		String skill = keyboardIn.nextLine();
+		if(((TechnicalResume) currentTechnicalResume).removeSoftwareSkill(skill)) {
+			System.out.println(skill+" has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find that skill.");
+		}
+		
+		return currentTechnicalResume;
+	}
+	
+	public Resume addOrRemoveProgrammingLanguageSkill(Resume currentTechnicalResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentTechnicalResume=processSkills((TechnicalResume) currentTechnicalResume, "programming language");
+		} else if(selection == 2) {
+			currentTechnicalResume=processProgrammingLanguageSkillRemoval(currentTechnicalResume);
+		} else if(selection == 3) {
+			((TechnicalResume) currentTechnicalResume).eraseProgrammingLanguageSkills();
+			System.out.println("All skills been erased.");
+		}
+		
+		return currentTechnicalResume;
+	}
+	
+	public Resume processProgrammingLanguageSkillRemoval(Resume currentTechnicalResume) {
+		System.out.println("Please enter the skill you would like to delete (exactly as entered previously.");
+		String skill = keyboardIn.nextLine();
+		if(((TechnicalResume) currentTechnicalResume).removeProgrammingLanguageSkill(skill)) {
+			System.out.println(skill+" has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find that skill.");
+		}
+		
+		return currentTechnicalResume;
+	}
+	
+	public Resume addOrRemoveCertification(Resume currentTechnicalResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentTechnicalResume=processCertifications((TechnicalResume) currentTechnicalResume);	
+		} else if(selection == 2) {
+			currentTechnicalResume=processCertificationRemoval(currentTechnicalResume);
+		} else if(selection == 3) {
+			((TechnicalResume) currentTechnicalResume).eraseCertifications();
+			System.out.println("All certifications have been erased.");
+		}
+		
+		return currentTechnicalResume;
+	}
+	
+	public Resume processCertificationRemoval(Resume currentTechnicalResume) {
+		System.out.println("Please enter the title of the certification you would like to delete (exactly as entered previously.");
+		String certificationTitle = keyboardIn.nextLine();
+		if(((TechnicalResume) currentTechnicalResume).removeCertification(certificationTitle)) {
+			System.out.println(certificationTitle+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find certification with that title.");
+		}
 		
 		return currentTechnicalResume;
 	}
