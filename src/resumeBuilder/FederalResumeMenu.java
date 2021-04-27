@@ -91,7 +91,7 @@ public class FederalResumeMenu implements Menu {
 	public Resume processContactInformation(Resume currentFederalResume) {
 		
 		System.out.println("Please enter your full name.");
-		String firstName = keyboardIn.nextLine(); 
+		String fullName = keyboardIn.nextLine(); 
 		
 		System.out.println("Please enter your email.");
 		String email = keyboardIn.nextLine(); 
@@ -102,7 +102,7 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("Please enter your address.");
 		String address = keyboardIn.nextLine();
 		
-		ContactInformation currentContactInfo = new ContactInformation(firstName, email, phone_number, address);
+		ContactInformation currentContactInfo = new ContactInformation(fullName, email, phone_number, address);
 		
 		currentFederalResume.setContactInfo(currentContactInfo);
 		
