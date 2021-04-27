@@ -9,7 +9,7 @@ public class UndergradResearchResume implements Resume {
 	private List<Job> jobs = new ArrayList<Job>();
 	private List<Activity> activities = new ArrayList<Activity>();
 	private List<String> skills = new ArrayList<String>();
-	private List<String> certifications = new ArrayList<String>();
+	private List<Certification> certifications = new ArrayList<Certification>();
 	private List<String> memberships = new ArrayList<String>();
 	private List<String> conferences = new ArrayList<String>();
 	
@@ -49,7 +49,7 @@ public class UndergradResearchResume implements Resume {
 		activities.add(activity);		
 	}
 
-	public List<Activity> getActivity() {
+	public List<Activity> getActivities() {
 		return activities;
 	}
 	
@@ -61,11 +61,11 @@ public class UndergradResearchResume implements Resume {
 		return this.skills;
 	}
 	
-	public void addCertifications(String certification) {
+	public void addCertification(Certification certification) {
 		this.certifications.add(certification);
 	}
 	
-	public List<String> getCertifications() {
+	public List<Certification> getCertifications(){
 		return this.certifications;
 	}
 	

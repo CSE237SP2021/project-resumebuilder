@@ -76,11 +76,9 @@ public class FederalResumeMenu implements Menu {
 				currentFederalResume=processReference((FederalResume) currentFederalResume);
 				resetMenu(currentFederalResume);
 		} else if (federalResumeOption==12) {
-			System.out.println("Word Doc creation unsupported for our federal resume template.");
-			resetMenu(currentFederalResume);
-//			String filePath = promptForDestination();
-//			WordCreator wordCreator = new WordCreator(currentFederalResume, filePath);
-//			wordCreator.createWordDocument();
+			String filePath = promptForDestination();
+			WordCreator wordCreator = new WordCreator(currentFederalResume, filePath);
+			wordCreator.createWordDocument();
 		} else {
 			displayExitMessage();
 			return;
@@ -304,7 +302,8 @@ public class FederalResumeMenu implements Menu {
 
 	@Override
 	public String promptForDestination() {
-		System.out.println("What file path do you want your resume stored at? (Give absolute path.)");
+		System.out.println("What file path do you want your resume stored at? (Give absolute path. e.g. /Users/<username>/Desktop/<filename>.docx)");
+		System.out.println("Don't forget to include the file name at the end!");
 		return keyboardIn.nextLine();
 	}
 
