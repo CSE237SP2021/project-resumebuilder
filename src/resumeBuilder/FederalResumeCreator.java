@@ -115,9 +115,12 @@ public class FederalResumeCreator {
 					newJob.getFormat().setBeforeAutoSpacing(false);
 					newJob.getFormat().setBeforeSpacing(10);
 				}
-				TextRange tr = newJob.appendText(federalJob.getCompany() +", " +federalJob.getJobTitle());
+				TextRange tr = newJob.appendText(federalJob.getCompany() +", ");
 				tr.getCharacterFormat().setBold(true);
 				tr.getCharacterFormat().setFontSize(12);
+				TextRange positionTR = newJob.appendText(federalJob.getJobTitle());
+				positionTR.getCharacterFormat().setItalic(true);
+				
 				Paragraph dates = section.addParagraph();
 				dates.getFormat().setLeftIndent(30);
 				dates.appendText(federalJob.getStartDate()+"-"+federalJob.getEndDate());
@@ -211,9 +214,11 @@ public class FederalResumeCreator {
 					newActivity.getFormat().setBeforeAutoSpacing(false);
 					newActivity.getFormat().setBeforeSpacing(10);
 				}
-				TextRange tr = newActivity.appendText(activity.getOrganization() +", " +activity.getRole());
+				TextRange tr = newActivity.appendText(activity.getOrganization() +", ");
 				tr.getCharacterFormat().setBold(true);
 				tr.getCharacterFormat().setFontSize(12);
+				TextRange positionTR = newActivity.appendText(activity.getRole());
+				positionTR.getCharacterFormat().setItalic(true);
 				Paragraph dates = section.addParagraph();
 				dates.getFormat().setLeftIndent(30);
 				dates.appendText(activity.getStartDate()+"-"+activity.getEndDate());

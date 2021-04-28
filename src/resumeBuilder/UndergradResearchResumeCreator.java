@@ -171,9 +171,11 @@ public class UndergradResearchResumeCreator {
 					newActivity.getFormat().setBeforeAutoSpacing(false);
 					newActivity.getFormat().setBeforeSpacing(10);
 				}
-				TextRange tr = newActivity.appendText(activity.getOrganization() +", " +activity.getRole());
+				TextRange tr = newActivity.appendText(activity.getOrganization() +", ");
 				tr.getCharacterFormat().setBold(true);
 				tr.getCharacterFormat().setFontSize(12);
+				TextRange positionTR = newActivity.appendText(activity.getRole());
+				positionTR.getCharacterFormat().setItalic(true);
 				Paragraph dates = section.addParagraph();
 				dates.getFormat().setLeftIndent(30);
 				dates.appendText(activity.getStartDate()+"-"+activity.getEndDate());

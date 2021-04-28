@@ -2,8 +2,6 @@ package resumeBuilder;
 
 import java.util.Scanner;
 
-//import resumeBuilder.WordCreator;
-
 public class FederalResumeMenu implements Menu {
 
 	public Scanner keyboardIn = new Scanner(System.in);
