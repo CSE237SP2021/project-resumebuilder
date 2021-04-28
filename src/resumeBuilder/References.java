@@ -1,7 +1,4 @@
 package resumeBuilder;
-//import java.util.ArrayList;
-//import java.util.List;
-
 
 public class References {
 	String referenceName;
