@@ -80,11 +80,9 @@ public class FederalResumeMenu implements Menu {
 			((FederalResume) currentFederalResume).printFederalResume();
 			resetMenu(currentFederalResume);
 		} else if (federalResumeOption==13) {
-			System.out.println("Word Doc creation unsupported for our federal resume template.");
-			resetMenu(currentFederalResume);
-//			String filePath = promptForDestination();
-//			WordCreator wordCreator = new WordCreator(currentFederalResume, filePath);
-//			wordCreator.createWordDocument();
+			String filePath = promptForDestination();
+			WordCreator wordCreator = new WordCreator(currentFederalResume, filePath);
+			wordCreator.createWordDocument();
 		} else {
 			displayExitMessage();
 			return;
@@ -211,7 +209,7 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("If you have already entered your government experience, what you are entering now will replace that.");
 		System.out.println();
 		
-		System.out.println("Please enter your government experience (e.g., military, federal, or state).");
+		System.out.println("Please enter your government experience (e.g., military, federal, or state.");
 		String federalExperience = keyboardIn.nextLine(); 
 		
 		currentFederalResume.setFederalExperience(federalExperience);
@@ -521,7 +519,7 @@ public class FederalResumeMenu implements Menu {
 			System.out.println(organizationName+" and all associated data has been deleted.");
 		}
 		else {
-			System.out.println("Deletion unsuccessful. Couldn't find volunteer experience with that organization name. ");
+			System.out.println("Deletion unsuccessful. Couldn't find volunteer experience with that organization name.");
 		}
 		
 		return currentFederalResume;
@@ -543,7 +541,7 @@ public class FederalResumeMenu implements Menu {
 	}
 	
 	public Resume processSkillRemoval(Resume currentFederalResume) {
-		System.out.println("Please enter the skill you would like to delete (exactly as entered previously).");
+		System.out.println("Please enter the skill you would like to delete (exactly as entered previously.");
 		String skill = keyboardIn.nextLine();
 		if(((FederalResume) currentFederalResume).removeSkill(skill)) {
 			System.out.println(skill+" has been deleted.");

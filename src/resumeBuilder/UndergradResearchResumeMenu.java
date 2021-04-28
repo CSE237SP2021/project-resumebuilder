@@ -71,10 +71,9 @@ public class UndergradResearchResumeMenu implements Menu {
 			((UndergradResearchResume) currentUndergradResearchResume).printUndergradResearchResume();
 			resetMenu(currentUndergradResearchResume);
 		} else if (undergradResearchResumeOption==10) {
-			System.out.println("Cannot create Word document for this resume template yet.");
-//			String filePath = promptForDestination();
-//			WordCreator wordCreator = new WordCreator((StandardResume) currentStandardResume, filePath);
-//			wordCreator.createWordDocument();
+			String filePath = promptForDestination();
+			WordCreator wordCreator = new WordCreator(currentUndergradResearchResume, filePath);
+			wordCreator.createWordDocument();
 		} else {
 			displayExitMessage();
 			return;
