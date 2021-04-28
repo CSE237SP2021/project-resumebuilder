@@ -189,7 +189,7 @@ public class FederalResumeMenu implements Menu {
 	
 	private FederalResume processCitizenshipStatus(FederalResume currentFederalResume) {
 		
-		System.out.println("Please enter your citizenship status (e.g., US Citizen, Work Visa.");
+		System.out.println("Please enter your citizenship status (e.g., US Citizen, Work Visa).");
 		String citizenshipStatus = keyboardIn.nextLine(); 
 		
 		currentFederalResume.setCitizenshipStatus(citizenshipStatus);
@@ -199,7 +199,7 @@ public class FederalResumeMenu implements Menu {
 	
 	private FederalResume processFederalExperience(FederalResume currentFederalResume) {
 		
-		System.out.println("Please enter your government experience (e.g., military, federal, or state.");
+		System.out.println("Please enter your government experience (e.g., military, federal, or state).");
 		String federalExperience = keyboardIn.nextLine(); 
 		
 		currentFederalResume.setFederalExperience(federalExperience);
