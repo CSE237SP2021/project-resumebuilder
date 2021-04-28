@@ -312,11 +312,11 @@ class FederalResumeMenuTests {
 		assertNotNull(federalResume);
 		
 		federalResume.setCitizenshipStatus(citizenshipStatus);
-		if(citizenshipStatus != federalResume.getCitizenshipStatus()) {
+		if(citizenshipStatus.equals(federalResume.getCitizenshipStatus())) {
+			assertTrue(true);
+		} else {
 			assertTrue(false);
 		}
-
-		assertTrue(true);
 	}
 	
 	@Test
@@ -336,10 +336,11 @@ class FederalResumeMenuTests {
 		assertNotNull(federalResume);
 		
 		federalResume.setClearance(clearance);
-		if(clearance != federalResume.getClearance()) {
+		if(clearance.equals(federalResume.getClearance())) {
+			assertTrue(true);
+		} else {
 			assertTrue(false);
 		}
-		assertTrue(true);
 	}
 	
 	@Test
@@ -348,7 +349,7 @@ class FederalResumeMenuTests {
 		String purposeStatement = keyboardIn.nextLine(); 
 		char [] purpose_char_array = purposeStatement.toCharArray();
 		for (char letter : purpose_char_array) {
-			if ((Character.isLetter(letter)) || (letter == ' ')) {
+			if (Character.isDigit(letter) || Character.isLetter(letter) || letter == ' ' || letter == ',' || letter == '.' || letter == '-') {
 				assertTrue(true);
 			} else {
 				assertTrue(false);
@@ -419,7 +420,7 @@ class FederalResumeMenuTests {
 		federalResume.addActivity(currentActivity);
 		
 		boolean activityExistsInArray = false;
-		for (Activity activity : federalResume.getActivity()) {
+		for (Activity activity : federalResume.getActivities()) {
 			if (activity.equals(currentActivity)) {
 				activityExistsInArray = true;
 			}
