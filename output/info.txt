@@ -1,0 +1,1 @@
+This is a placholder file in the output directory. This folder is the default location for resume generation in the event that at the end of the creation process you don't specify a file path or give an invalid file path.
