@@ -50,4 +50,7 @@ public class School {
 		return this.honorsAwards;
 	}
 	
+	public String toString() {
+		return "Name: "+this.schoolName+", Time: "+this.startDate+"-"+this.endDate+", Location: "+this.schoolLocation+", GPA: "+this.gpa+", Honors/Awards: "+this.honorsAwards.toString();
+	}
 }

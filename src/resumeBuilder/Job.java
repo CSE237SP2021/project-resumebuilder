@@ -57,4 +57,9 @@ public class Job {
 	public List<String> getDescriptions() {
 		return descriptions;
 	}
+	
+	public String toString() {
+		return "Company: "+this.company+", Title: "+this.jobTitle+", Time: "+this.startDate+"-"+this.endDate+", Descriptions: "+this.descriptions.toString();
+
+	}
 }

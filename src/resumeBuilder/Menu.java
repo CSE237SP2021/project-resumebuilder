@@ -22,6 +22,15 @@ public interface Menu {
 	
 	public School promptForHonorsOrAwards(School currentSchool);
 	
+	public void displayAddOrRemove();
+	public int promptForAddOrRemove();
+	
+	public Resume addOrRemoveSchool(Resume currentResume);
+	public Resume processSchoolRemoval(Resume currentResume);
+	
+	public Resume addOrRemoveJob(Resume currentResume);
+	public Resume processJobRemoval(Resume currentResume);
+	
 	public void resetMenu(Resume currentResume);
 	
 	public String promptForDestination();

@@ -57,4 +57,9 @@ public class Activity {
 	public List<String> getDescriptions() {
 		return descriptions;
 	}
+	
+	public String toString() {
+		return "Organization: "+this.organization+", Role: "+this.role+", Time: "+this.startDate+"-"+this.endDate+", Descriptions: "+this.descriptions.toString();
+
+	}
 }
