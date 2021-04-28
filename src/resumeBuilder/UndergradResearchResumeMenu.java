@@ -16,7 +16,7 @@ public class UndergradResearchResumeMenu implements Menu {
 
 	@Override
 	public void displayMenu() {
-		System.out.println("Please select the information you would like to add next.");
+		System.out.println("Please select the information you would like to add/edit next.");
 		System.out.println("1. Contact Information");
 		System.out.println("2. Academic History");
 		System.out.println("3. Research and/or Work Experience");
@@ -25,8 +25,9 @@ public class UndergradResearchResumeMenu implements Menu {
 		System.out.println("6. Certifications");
 		System.out.println("7. Organizational Memberships");
 		System.out.println("8. Conferences Attended/Presented");
-		System.out.println("9. Save as word document");
-		System.out.println("10. Exit");
+		System.out.println("9. View current content");
+		System.out.println("10. Save as word document");
+		System.out.println("11. Exit");
 	}
 
 	@Override
@@ -42,24 +43,23 @@ public class UndergradResearchResumeMenu implements Menu {
 
 	@Override
 	public void processMenu(int undergradResearchResumeOption, Resume currentUndergradResearchResume) {
-		// TODO Auto-generated method stub
 		if(undergradResearchResumeOption==1) {
 			currentUndergradResearchResume=processContactInformation(currentUndergradResearchResume);
 			resetMenu(currentUndergradResearchResume);
 		} else if (undergradResearchResumeOption==2) {
-			currentUndergradResearchResume=processAcademicInformation(currentUndergradResearchResume);
+			currentUndergradResearchResume=addOrRemoveSchool(currentUndergradResearchResume);
 			resetMenu(currentUndergradResearchResume);
 		} else if (undergradResearchResumeOption==3) {
-			currentUndergradResearchResume=processWorkExperience(currentUndergradResearchResume);
+			currentUndergradResearchResume=addOrRemoveJob(currentUndergradResearchResume);
 			resetMenu(currentUndergradResearchResume);
 		} else if (undergradResearchResumeOption==4) {				
-			currentUndergradResearchResume=processActivity((UndergradResearchResume) currentUndergradResearchResume);
+			currentUndergradResearchResume=addOrRemoveActivity(currentUndergradResearchResume);
 			resetMenu(currentUndergradResearchResume);
 		} else if (undergradResearchResumeOption==5) {				
-			currentUndergradResearchResume=processSkill((UndergradResearchResume) currentUndergradResearchResume);
+			currentUndergradResearchResume=addOrRemoveSkill(currentUndergradResearchResume);
 			resetMenu(currentUndergradResearchResume);
 		} else if (undergradResearchResumeOption==6) {				
-			currentUndergradResearchResume=processCertification((UndergradResearchResume) currentUndergradResearchResume);
+			currentUndergradResearchResume=addOrRemoveCertification(currentUndergradResearchResume);
 			resetMenu(currentUndergradResearchResume);
 		} else if (undergradResearchResumeOption==7) {				
 			currentUndergradResearchResume=processMembership((UndergradResearchResume) currentUndergradResearchResume);
@@ -67,7 +67,10 @@ public class UndergradResearchResumeMenu implements Menu {
 		} else if (undergradResearchResumeOption==8) {				
 			currentUndergradResearchResume=processConference((UndergradResearchResume) currentUndergradResearchResume);
 			resetMenu(currentUndergradResearchResume);
-		}  else if (undergradResearchResumeOption==9) {
+		}  else if (undergradResearchResumeOption==9) {	
+			((UndergradResearchResume) currentUndergradResearchResume).printUndergradResearchResume();
+			resetMenu(currentUndergradResearchResume);
+		} else if (undergradResearchResumeOption==10) {
 			String filePath = promptForDestination();
 			WordCreator wordCreator = new WordCreator(currentUndergradResearchResume, filePath);
 			wordCreator.createWordDocument();
@@ -79,6 +82,9 @@ public class UndergradResearchResumeMenu implements Menu {
 
 	@Override
 	public Resume processContactInformation(Resume currentUndergradResearchResume) {
+		System.out.println("If you have already entered contact information, what you are entering now will replace that.");
+		System.out.println();
+		
 		System.out.println("Please enter your full name.");
 		String firstName = keyboardIn.nextLine(); 
 		
@@ -302,6 +308,168 @@ public class UndergradResearchResumeMenu implements Menu {
 		System.out.println("Exiting academic honors/awards section...");
 		
 		return currentSchool;
+	}
+	
+	public void displayAddOrRemove() {
+		System.out.println("Please select what you would like to do.");
+		System.out.println("1. Add an entry.");
+		System.out.println("2. Remove an entry.");
+		System.out.println("3. Erase all entries.");
+		System.out.println("4. Return");
+	}
+	
+	public int promptForAddOrRemove() {
+		displayAddOrRemove();
+		
+		int selection = getMenuSelection();
+		
+		while(selection>4 || selection<1) {
+			System.out.println("That is not a valid selection. Please try again.");
+			displayAddOrRemove();
+			selection = getMenuSelection();
+		}
+		
+		return selection;
+	}
+	
+	public Resume addOrRemoveSchool(Resume currentUndergradResearchResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentUndergradResearchResume=processAcademicInformation(currentUndergradResearchResume);	
+		} else if(selection == 2) {
+			currentUndergradResearchResume=processSchoolRemoval(currentUndergradResearchResume);
+		} else if(selection == 3) {
+			((UndergradResearchResume) currentUndergradResearchResume).eraseSchools();
+			System.out.println("All academic history has been erased.");
+		}
+		
+		return currentUndergradResearchResume;
+	}
+	
+	public Resume processSchoolRemoval(Resume currentUndergradResearchResume) {
+		System.out.println("Please enter the name of the school you would like to delete (exactly as entered previously.");
+		String schoolName = keyboardIn.nextLine();
+		if(((UndergradResearchResume) currentUndergradResearchResume).removeSchool(schoolName)) {
+			System.out.println(schoolName+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find school with that name.");
+		}
+		
+		return currentUndergradResearchResume;
+	}
+	
+	public Resume addOrRemoveJob(Resume currentUndergradResearchResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentUndergradResearchResume=processWorkExperience(currentUndergradResearchResume);
+		} else if(selection == 2) {
+			currentUndergradResearchResume=processJobRemoval(currentUndergradResearchResume);
+		} else if(selection == 3) {
+			((UndergradResearchResume) currentUndergradResearchResume).eraseJobs();
+			System.out.println("All work experience has been erased.");
+		}
+		
+		return currentUndergradResearchResume;
+	}
+	
+	public Resume processJobRemoval(Resume currentUndergradResearchResume) {
+		System.out.println("Please enter the company name of the job or research experience you would like to delete (exactly as entered previously.");
+		String companyName = keyboardIn.nextLine();
+		if(((UndergradResearchResume) currentUndergradResearchResume).removeJob(companyName)) {
+			System.out.println(companyName+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find job or research experience with that company name.");
+		}
+		
+		return currentUndergradResearchResume;
+	}
+	
+	public Resume addOrRemoveActivity(Resume currentUndergradResearchResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentUndergradResearchResume=processActivity((UndergradResearchResume) currentUndergradResearchResume);
+		} else if(selection == 2) {
+			currentUndergradResearchResume=processActivityRemoval(currentUndergradResearchResume);
+		} else if(selection == 3) {
+			((UndergradResearchResume) currentUndergradResearchResume).eraseActivities();
+			System.out.println("All activities have been erased.");
+		}
+		
+		return currentUndergradResearchResume;
+	}
+	
+	public Resume processActivityRemoval(Resume currentUndergradResearchResume) {
+		System.out.println("Please enter the organization name of the activity you would like to delete (exactly as entered previously.");
+		String organizationName = keyboardIn.nextLine();
+		if(((UndergradResearchResume) currentUndergradResearchResume).removeActivity(organizationName)) {
+			System.out.println(organizationName+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find activity with that organization name.");
+		}
+		
+		return currentUndergradResearchResume;
+	}
+	
+	public Resume addOrRemoveSkill(Resume currentUndergradResearchResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentUndergradResearchResume=processSkill((UndergradResearchResume) currentUndergradResearchResume);
+		} else if(selection == 2) {
+			currentUndergradResearchResume=processSkillRemoval(currentUndergradResearchResume);
+		} else if(selection == 3) {
+			((UndergradResearchResume) currentUndergradResearchResume).eraseSkills();
+			System.out.println("All skills been erased.");
+		}
+		
+		return currentUndergradResearchResume;
+	}
+	
+	public Resume processSkillRemoval(Resume currentUndergradResearchResume) {
+		System.out.println("Please enter the skill you would like to delete (exactly as entered previously.");
+		String skill = keyboardIn.nextLine();
+		if(((UndergradResearchResume) currentUndergradResearchResume).removeSkill(skill)) {
+			System.out.println(skill+" has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find that skill.");
+		}
+		
+		return currentUndergradResearchResume;
+	}
+	
+	public Resume addOrRemoveCertification(Resume currentUndergradResearchResume) {
+		int selection = promptForAddOrRemove();
+		
+		if(selection == 1) {
+			currentUndergradResearchResume=processCertification((UndergradResearchResume) currentUndergradResearchResume);	
+		} else if(selection == 2) {
+			currentUndergradResearchResume=processCertificationRemoval(currentUndergradResearchResume);
+		} else if(selection == 3) {
+			((UndergradResearchResume) currentUndergradResearchResume).eraseCertifications();
+			System.out.println("All certifications have been erased.");
+		}
+		
+		return currentUndergradResearchResume;
+	}
+	
+	public Resume processCertificationRemoval(Resume currentUndergradResearchResume) {
+		System.out.println("Please enter the title of the certification you would like to delete (exactly as entered previously.");
+		String certificationTitle = keyboardIn.nextLine();
+		if(((UndergradResearchResume) currentUndergradResearchResume).removeCertification(certificationTitle)) {
+			System.out.println(certificationTitle+" and all associated data has been deleted.");
+		}
+		else {
+			System.out.println("Deletion unsuccessful. Couldn't find certification with that title.");
+		}
+		
+		return currentUndergradResearchResume;
 	}
 
 	@Override

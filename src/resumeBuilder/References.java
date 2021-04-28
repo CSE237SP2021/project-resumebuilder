@@ -42,4 +42,8 @@ public class References {
 	public String getReferenceOrganization() {
 		return this.referenceOrganization;
 	}
+	
+	public String toString() {
+		return "Name: "+this.referenceName+", Organization: "+this.referenceOrganization+", Phone #: "+this.referencePhoneNumber+", Email: "+this.referenceEmail;
+	}
 }
