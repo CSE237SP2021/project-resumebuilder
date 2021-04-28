@@ -521,7 +521,7 @@ public class FederalResumeMenu implements Menu {
 			System.out.println(organizationName+" and all associated data has been deleted.");
 		}
 		else {
-			System.out.println("Deletion unsuccessful. Couldn't find volunteer experience with that organization name.");
+			System.out.println("Deletion unsuccessful. Couldn't find volunteer experience with that organization name. ");
 		}
 		
 		return currentFederalResume;
