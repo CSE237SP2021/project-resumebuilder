@@ -33,18 +33,20 @@ public class StandardResumeCreator {
 	 * @param section section to add to in word doc
 	 */
 	public void addContactInfo(Section section) {
-		Paragraph name = section.addParagraph();
-		TextRange tr = name.appendText(resume.getContactInfo().getName()+ "\n");
-		tr.getCharacterFormat().setBold(true);
-		tr.getCharacterFormat().setFontSize(18);
-		
-		//add email/phone/address below border line
-		Paragraph otherPersonalInfo = section.addParagraph();
-		otherPersonalInfo.appendText(resume.getContactInfo().getEmail());
-		otherPersonalInfo.appendText("       "+resume.getContactInfo().getPhoneNumber());
-		otherPersonalInfo.appendText("       "+resume.getContactInfo().getAddress());
-		otherPersonalInfo.getFormat().setHorizontalAlignment(HorizontalAlignment.Left);
-		otherPersonalInfo.getFormat().getBorders().getBottom().setBorderType(BorderStyle.Single);	
+		if(resume.getContactInfo().getName()!=null) {
+			Paragraph name = section.addParagraph();
+			TextRange tr = name.appendText(resume.getContactInfo().getName()+ "\n");
+			tr.getCharacterFormat().setBold(true);
+			tr.getCharacterFormat().setFontSize(18);
+			
+			//add email/phone/address below border line
+			Paragraph otherPersonalInfo = section.addParagraph();
+			otherPersonalInfo.appendText(resume.getContactInfo().getEmail());
+			otherPersonalInfo.appendText("       "+resume.getContactInfo().getPhoneNumber());
+			otherPersonalInfo.appendText("       "+resume.getContactInfo().getAddress());
+			otherPersonalInfo.getFormat().setHorizontalAlignment(HorizontalAlignment.Left);
+			otherPersonalInfo.getFormat().getBorders().getBottom().setBorderType(BorderStyle.Single);	
+		}	
 	}
 	
 	/** Adds 'Education' section to word doc

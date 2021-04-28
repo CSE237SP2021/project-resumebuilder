@@ -20,7 +20,7 @@ public class WordCreator {
 	
 	public int createWordDocument() {
 		String docTitle = "";
-		if(resume.getContactInfo() != null) {
+		if(resume.getContactInfo().getName() != null) {
 			String name = resume.getContactInfo().getName();
 			docTitle = name.replaceAll("\\s","");
 		}
