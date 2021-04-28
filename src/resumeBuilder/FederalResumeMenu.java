@@ -543,7 +543,7 @@ public class FederalResumeMenu implements Menu {
 	}
 	
 	public Resume processSkillRemoval(Resume currentFederalResume) {
-		System.out.println("Please enter the skill you would like to delete (exactly as entered previously.");
+		System.out.println("Please enter the skill you would like to delete (exactly as entered previously).");
 		String skill = keyboardIn.nextLine();
 		if(((FederalResume) currentFederalResume).removeSkill(skill)) {
 			System.out.println(skill+" has been deleted.");
