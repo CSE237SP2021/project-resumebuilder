@@ -1,6 +1,5 @@
 # cse237-project
 
-
 # The Resume Builder Project
 	- Audience: job applicants, HS and college students
 	- Users will choose a resume template, input prompted information, and receive a Word document of their resume
