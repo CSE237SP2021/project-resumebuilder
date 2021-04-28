@@ -95,7 +95,7 @@ public class FederalResumeMenu implements Menu {
 		System.out.println();
 		
 		System.out.println("Please enter your full name.");
-		String firstName = keyboardIn.nextLine(); 
+		String fullName = keyboardIn.nextLine(); 
 		
 		System.out.println("Please enter your email.");
 		String email = keyboardIn.nextLine(); 
@@ -106,7 +106,7 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("Please enter your address.");
 		String address = keyboardIn.nextLine();
 		
-		ContactInformation currentContactInfo = new ContactInformation(firstName, email, phone_number, address);
+		ContactInformation currentContactInfo = new ContactInformation(fullName, email, phone_number, address);
 		
 		currentFederalResume.setContactInfo(currentContactInfo);
 		
@@ -197,7 +197,7 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("If you have already entered your citizenship status, what you are entering now will replace that.");
 		System.out.println();
 		
-		System.out.println("Please enter your citizenship status (e.g., US Citizen, Work Visa.");
+		System.out.println("Please enter your citizenship status (e.g., US Citizen, Work Visa).");
 		String citizenshipStatus = keyboardIn.nextLine(); 
 		
 		currentFederalResume.setCitizenshipStatus(citizenshipStatus);
@@ -209,7 +209,7 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("If you have already entered your government experience, what you are entering now will replace that.");
 		System.out.println();
 		
-		System.out.println("Please enter your government experience (e.g., military, federal, or state.");
+		System.out.println("Please enter your government experience (e.g., military, federal, or state).");
 		String federalExperience = keyboardIn.nextLine(); 
 		
 		currentFederalResume.setFederalExperience(federalExperience);
