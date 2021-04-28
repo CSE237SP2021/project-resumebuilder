@@ -211,7 +211,7 @@ public class FederalResumeMenu implements Menu {
 		System.out.println("If you have already entered your government experience, what you are entering now will replace that.");
 		System.out.println();
 		
-		System.out.println("Please enter your government experience (e.g., military, federal, or state.");
+		System.out.println("Please enter your government experience (e.g., military, federal, or state).");
 		String federalExperience = keyboardIn.nextLine(); 
 		
 		currentFederalResume.setFederalExperience(federalExperience);
